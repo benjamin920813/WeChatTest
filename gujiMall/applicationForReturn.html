@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>退货申请</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css" >
+		body{
+			overflow-x: hidden;
+			background-color: #ebebeb;
+		}
+	</style>
+</head>
+<body>
+	<div class="infC">
+		<img src="img/name.png" alt="" class="ico_img">
+		<input type="text" name="" value="" readonly="readonly" style="background-color: transparent;" placeholder="姓名" class="input_inf username">
+	</div>
+	<div class="infC">
+		<img src="img/phoneNum.png" alt="" class="ico_img">
+		<input type="text" name="" value="" readonly="readonly" style="background-color: transparent;" placeholder="手机号码" class="input_inf userPhone">
+	</div>
+	<div class="infC">
+		<img src="img/address.png" alt="" class="ico_img">
+		<!-- <input type="text" name="" value="" placeholder="详细地址" class="input_inf"> -->
+		<textarea name="" style="resize: none; background-color: transparent;" class="textAre_inf userAddr"  placeholder="详细地址"></textarea>
+	</div>
+	<div class="infC">
+		<img src="img/note.png" alt="" class="ico_img">
+		<!-- <input type="text" name="" value="" placeholder="退货原因" class="input_inf"> -->
+		<textarea name="" class="textAre_inf return_describe" placeholder="填写退货原因"></textarea>
+	</div>
+	
+	<div class="return-note">
+		<span>请填写以上四项，咕哩将尽快与您联系</span>
+	</div>
+
+	<div class="p1_submit_bt">
+		<span class="table-cell">提交</span>
+	</div>
+	<div class="p1-email">
+		<a href="javascript:alert('邮箱：cs@grecycle.com.cn')"><img src="img/e-mail.png" class="ph_email_img" alt=""></a>
+
+	</div>
+	<div class="p1-tel">
+		<a href="tel:15026808450"><img src="img/phone.png" class="ph_email_img" alt=""></a>
+	</div>
+
+	<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+	<script src="http://dev.api.zpage.me/sdk.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/wxid.js"></script>
+	<script>
+
+
+		$(document).ready(function(){
+			
+			try{
+				var search = window.location.search.replace(/\?/, '');
+					var parameters_str = search.split(/&/);
+					var parameters = {};
+					for (var i in parameters_str) {
+						var kv = parameters_str[i].split(/=/);
+						parameters[kv[0]] = kv[1];
+					}
+					var orderNum = parameters["orderNo"];
+			}catch(e){console.log(e);}
+			var collections = shoots.collection("guji");
+			collections.findOne({flag:"buyInfo","userWxID":wxID,"orderNum":orderNum},function(err,data){
+				collections.findOne({"flag":"user","userWxID":wxID},function(err,data1){
+					if(data1!==undefined&&data1!==null&&data1!=={}){
+						if(!data.otherAddr){
+							$(".username").val(data1.userName);
+							$(".userPhone").val(data1.userPhone);
+							$(".userAddr").val(data1.userAddress);
+						}else{
+							collections.findOne({"flag":"receiveAddrs","userWxID":wxID,timestamp:data.otherAddr},function(err,data2){
+								$(".username").val(data2.userName);
+								$(".userPhone").val(data2.userPhone);
+								$(".userAddr").val(data2.userAddress);
+							})
+						}
+					}else{
+					}
+				});
+			})
+			if(orderNum){
+				collections.findOne({"flag":"userReturnInf","userWxID":wxID,"returnOrderNum":orderNum},function(err,data){
+					if(data!==undefined&&data!==null&&data!=={}){
+						
+						$(".return_describe").text(data.returnReason);
+						if(data.isDeal&&data.isDeal===true){
+							$(".return_describe").attr("disabled","disabled");
+							$(".return_describe").css("background-color","white");
+							$(".p1_submit_bt span").text("返回");
+						}
+					}else{
+					}
+				});
+			}
+			
+			$(".p1_submit_bt").on('click',function(){
+				
+				var save_data = {
+					userWxID : wxID,
+					flag : "userReturnInf",
+					//订单号
+					returnOrderNum : orderNum,
+					//退货原因
+					returnReason : $(".return_describe").val().trim(),
+					returnPhone:$(".userPhone").val(),
+					returnAddr:$(".userAddr").val(),
+					returnname:$(".username").val(),
+				}
+				collections.findOne({"flag":"userReturnInf","userWxID":wxID,"returnOrderNum":orderNum},function(err,data){
+					if(data===null){
+						save_data.isDeal = false;
+					}else{
+						save_data.isDeal = data.isDeal;
+					}
+					if($(".p1_submit_bt span").text().trim()!=="返回"){
+						
+						collections.update({"flag" : "userReturnInf","userWxID":wxID,"returnOrderNum":orderNum},save_data,{upsert:true},function(){
+							alert("退货申请已经提交，等待回复!");
+							window.location.href ='buy.html';
+						});
+					}else{
+						history.back();
+					}
+				});
+					
+			});
+		});
+	</script>
+</body>
+</html>

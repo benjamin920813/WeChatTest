@@ -1,0 +1,116 @@
+<style>
+nav ul li a {
+	line-height: normal!important;
+	font-size: 18px!important;
+	padding: 10px 10px 10px 11px!important;
+	color: white!important;
+	display: block!important;
+	font-weight: 600!important;
+	text-decoration: none!important;
+	position: relative!important;
+	text-align: center!important;
+}
+nav ul li a:hover{
+	background-color: #54622F!important;
+}
+.login-info a {
+	color: white;
+}
+.login-info img{
+	width: 50px!important;
+	border-radius: 50%;
+	margin-bottom: 10px;
+}
+.login-info {
+	display: block;
+	font-size: 18px!important;
+	height: 80px;
+	color: #fff;
+	border: solid transparent;
+	border-width: 1px 0;
+	box-shadow: none!important;
+	width: 100%;
+	margin: 0!important;
+	/*border-bottom: 1px solid #fff!important;*/
+	text-align: center;
+	margin-bottom: 30px!important;
+}
+.login-info>span {
+	height: 80px;
+	display: block;
+	padding: 0 10px;
+	border-bottom: none!important;
+}
+.bdr{
+	border-style: solid;
+	border-color: #CCC;
+	border-width: 1px
+}
+.price-box{
+	display: block;
+	width: 50px;
+	min-height: 30px;
+	padding: 1px 3px;
+	font-size: 13px;
+	line-height: 1.428571429;
+	color: #555;
+	vertical-align: middle;
+	background-color: #FFF;
+	border: 1px solid #CCC;
+	border-radius: 0;
+	float: left;
+}
+.goods img{
+	width: 150px;
+	height: 150px;
+	margin: 10px;
+}
+td{
+	vertical-align: middle!important;
+}
+.name{
+	height: 54px;
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.infor{
+	font-size: 14px;
+	font-weight: bold;
+}
+.ture{
+	margin-top: 10px;
+	margin-left: 9px;
+	color: #2F9D23;
+}
+.false{
+	margin-top: 10px;
+	margin-left: 9px;
+	color: #FF0000;
+}
+.card>div>img{
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	/*margin-left: 33px;*/
+	float: right;
+}
+.card>label{
+	height: 90px;
+	vertical-align: middle;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 4em;
+}
+.trch{
+	background-color: cornsilk;
+}
+.imgListSize{
+    max-height: 90px;
+    max-width: 90px;
+    margin: 5px;
+    border: 1px solid #C9B9CE;
+    padding: 2px;
+}
+
+</style>

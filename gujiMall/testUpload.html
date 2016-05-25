@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="file" class="uploadImg" accept="image/*" multiple="multiple"  />
+	<script src="js/jquery.min.js"></script>
+	<script src="http://dev.api.zpage.me/sdk.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$(".uploadImg").change(function(ev){
+			var data = this;
+			var that = this;
+		   	if (data.value != "") {
+		   		var name = 'test';
+		   		var file = shoots.file(name, data);
+		   		file.save(function(err, data) {
+		   			console.log(data);
+		   			// $(that).parent().parent().children(".thumb").attr("src",file.url());
+		   			// $(that).parent().parent().children(".picture_title").text(file.url());
+		   		}, function(err) {
+		   			console.log(err);
+		   		});
+		   	}
+		})
+	});
+	</script>
+</body>
+</html>

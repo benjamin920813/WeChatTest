@@ -1,0 +1,33 @@
+//将时间转换为 [年-月-日 时:分:秒] 格式
+function CurentTime(){ 
+    var now = new Date();
+   
+    var year = now.getFullYear();       //年
+    var month = now.getMonth() + 1;     //月
+    var day = now.getDate();            //日
+   
+    var hh = now.getHours();            //时
+    var mm = now.getMinutes();          //分
+    var ms = now.getSeconds();
+    var clock = year + "-";
+   
+    if(month < 10)
+        clock += "0";
+   
+    clock += month + "-";
+   
+    if(day < 10)
+        clock += "0";
+       
+    clock += day + " ";
+   
+    if(hh < 10)
+        clock += "0";
+       
+    clock += hh + ":";
+    if (mm < 10) clock += '0'; 
+    clock += mm + ":"; 
+    if(ms < 10) clock += '0';
+    clock += ms;
+    return(clock); 
+} 

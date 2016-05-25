@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>预约收货</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css" >
+		body{
+			background-color: #ebebeb;
+		}
+	</style>
+</head>
+<body>
+	<div id="reservation-from">		
+		<div class="infC">
+			<img src="img/name.png" alt="" class="ico_img">
+			<input type="text" name="" value="" placeholder="姓名" class="input_inf reservation-name">
+		</div>
+		<div class="infC">
+			<img src="img/phoneNum.png" alt="" class="ico_img">
+			<input type="text" name="" value="" placeholder="手机号码" class="input_inf reservation-phone">
+		</div>
+		<div class="infC">
+			<img src="img/address.png" alt="" class="ico_img">
+			<input type="text" name="" value="" placeholder="详细地址" class="input_inf reservation-address">
+		</div>
+		<div class="infC">
+			<img src="img/disc.png" alt="" class="ico_img">
+			<input type="text" name="" value="" placeholder="货品描述" class="input_inf reservation-disc">
+		</div>
+		<div class="infC">
+			<img src="img/note.png" alt="" class="ico_img">
+			<input type="text" name="" value="" placeholder="备注" class="input_inf reservation-remark">
+		</div>
+	</div>
+	<div class="infC_">
+		<span class="span_">预约时间</span>
+		<div class="radio_ selected"></div>
+		<span class="span_radio">工作日</span>
+		<div class="radio_"></div>
+		<span class="span_radio">周末</span>
+	</div>
+	<div class="tipes">
+		<p>
+			温馨提示：虹口、杨浦、黄浦、卢湾、静安、长宁、徐汇、闸北、普陀以及浦东新区（不包括南汇）内环区域内的宝爸宝妈们如果预约收货，咕哩将在一周内上门收取。以上地区之外的亲们，我们将在两周之内进行上门回收。上海地区之外的闲置母婴产品，我们暂时只接受全新的并且是易包装配送的，可以选择到付，如有需要可咨询客服获取邮寄地址。另外，咕哩暂时的收获标准是3件货品起。
+		</p>
+	</div>
+	<div class="p1_submit_bt reservation_bt">
+		<span class="table-cell">提交</span>
+	</div>
+	<div class="p1-email">
+		<a href="javascript:alert('邮箱：cs@grecycle.com.cn')"><img src="img/e-mail.png" class="ph_email_img" alt=""></a>
+
+	</div>
+	<div class="p1-tel">
+		<a href="tel:15026808450"><img src="img/phone.png" class="ph_email_img" alt=""></a>
+	</div>
+
+	<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+	<!--<script src="http://dev.api.zpage.me/sdk.js"></script>-->
+	<script src="http://dev.api.zpage.me/sdk.js"></script>
+	<script src="js/public.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/wxid.js"></script>
+	<script>
+	var date_;
+		$(document).ready(function(){
+			try{
+				var search = window.location.search.replace(/\?/, '');
+			
+					var parameters_str = search.split(/&/);
+					var parameters = {};
+					for (var i in parameters_str) {
+						var kv = parameters_str[i].split(/=/);
+						parameters[kv[0]] = kv[1];
+					}
+			}catch(e){console.log(e);}
+			
+			
+			
+			var collection_ =shoots.collection("guji");
+			var appointmentDate ='weekday';
+			var tipes =["请输入姓名","请输入正确手机号","请输入地址","请输入货品描述"];
+
+			$(".radio_").on('click',function(){
+				$(".radio_").removeClass('selected');
+				$(this).addClass('selected');	
+			});
+			initUserInf();
+			
+			
+			$(".reservation_bt").on('click',function(){
+				radioChose();
+
+				var userInfo = {
+					userWxID : wxID,
+					flag:'user',
+					userName: $(".reservation-name").val(),
+					userAddress :$(".reservation-address").val(),
+					userPhone : $(".reservation-phone").val(),
+					userFace : face,
+				};
+				var inf_ ={
+					userWxID : wxID,
+					reservationPhone: $(".reservation-phone").val(),
+					reservationName: $(".reservation-name").val(),
+					reservationAddress: $(".reservation-address").val(),
+					flag : "reservationInf_",
+					goodsDisc : $(".reservation-disc").val(),
+					//备注
+					userRemark : $(".reservation-remark").val(),
+					//预约时间
+					reservationDate : appointmentDate,
+					//预约提交时间
+					reservationTime : CurentTime()
+				};
+				
+				if(checkReservationInf(inf_)){
+					//数据库中已有该用户信息 update相关信息 没有则insert该用户
+				    collection_.insert(inf_);
+				    collection_.findOne({"flag":'user',"userWxID":userInfo.userWxID},function(err,data){
+				        if(!data){
+				            collection_.insert(userInfo);
+				        }
+						$("input").val('');
+						alert("已经成功预约!");
+						window.location.href= 'gujiMall.html';
+				    });
+					
+				}
+			});
+			function initUserInf(){
+				collection_.find({"flag":'user',"userWxID":wxID},function(err,data){
+					if(data.length!=0){
+						$(".reservation-name").val(data[0].userName);
+						$(".reservation-phone").val(data[0].userPhone);
+						$(".reservation-address").val(data[0].userAddress);
+					}
+				});
+
+			}
+			function radioChose(){
+				if($($(".radio_")[0]).hasClass('selected')){
+					appointmentDate ='weekday';
+				}else{
+					appointmentDate ='weekend';
+				}
+			}
+			function checkReservationInf(inf_){
+				//检查预约下单填写的信息是否正确
+				
+				var isPass =true;
+				$("#reservation-from input").each(function(index,element){
+					if($(element).val().trim() ==''){
+							if(index!=4){
+								alert(tipes[index]);
+								isPass =false;
+								return false;
+							}
+					}
+				});
+				var re = /^1\d{10}$/;
+				if (!(inf_.reservationPhone && re.test(inf_.reservationPhone))) {
+						alert(tipes[1]);
+						isPass =false;
+						return false;
+					}
+				return isPass;
+			}
+
+			
+		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+		<title>商品详情</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+			
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- Basic Styles -->
+		<link rel="stylesheet" type="text/css" media="screen" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/css/font-awesome.min.css">
+
+		<!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+		<link rel="stylesheet" type="text/css" media="screen" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/css/smartadmin-production.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/css/smartadmin-skins.min.css">
+
+		<!-- SmartAdmin RTL Support is under construction
+			 This RTL CSS will be released in version 1.5
+		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> -->
+
+		<!-- We recommend you use "your_style.css" to override SmartAdmin
+		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+
+		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+		<link rel="stylesheet" type="text/css" media="screen" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/css/demo.min.css">
+
+		<!-- FAVICONS -->
+		<link rel="shortcut icon" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/img/favicon/favicon.ico" type="image/x-icon">
+
+		<!-- GOOGLE FONT -->
+		<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700"> -->
+
+		<!-- Specifying a Webpage Icon for Web Clip 
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+		<link rel="apple-touch-icon" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/img/splash/sptouch-icon-iphone.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/img/splash/touch-icon-ipad.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/img/splash/touch-icon-iphone-retina.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/img/splash/touch-icon-ipad-retina.png">
+		
+		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!-- Startup image for web apps -->
+		<link rel="apple-touch-startup-image" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+		<link rel="apple-touch-startup-image" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+		<link rel="apple-touch-startup-image" href="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+		<link rel="stylesheet" href="css/style.css" type="text/css">
+		<style>
+			nav ul li a {
+				line-height: normal!important;
+				font-size: 18px!important;
+				padding: 10px 10px 10px 11px!important;
+				color: white!important;
+				display: block!important;
+				font-weight: 600!important;
+				text-decoration: none!important;
+				position: relative!important;
+				text-align: center!important;
+			}
+			.tagGoodTag{
+				border: 1px solid #000;
+				margin-right: 5px;
+			}
+			.form-horizontal img{
+				width: 100%;
+				border: 1px solid #C4C4CE;
+			    margin: 5px;
+			    padding: 2px;
+			}
+			.closeImgList{
+				max-width: 25px;
+			    border: none; 
+			    margin: 0px; 
+			    padding: 0px; 
+			    height: 25px;
+			    position: absolute;
+			    top: -8px;
+			    background-color: white;
+			    right: -8px;
+			    border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body class="">
+		<!-- Left panel : Navigation area -->
+		<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+		<aside id="left-panel" style="background:#71843F!important;position:fixed;">
+
+			<!-- User info -->
+			<div class="login-info">
+				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
+					
+					<a href="javascript:void(0);">
+						<img src="img/3.jpg" alt="me" class="online" /> 
+						<p>
+							南小征
+						</p>
+					</a> 
+					
+				</span>
+			</div>
+			<hr>
+			<!-- end user info -->
+
+			<!-- NAVIGATION : This navigation is also responsive
+
+			To make this navigation dynamic please make sure to link the node
+			(the reference to the nav > ul) after page load. Or the navigation
+			will not initialize.
+			-->
+			<nav>
+				<!-- NOTE: Notice the gaps after each icon usage <i></i>..
+				Please note that these links work a bit different than
+				traditional href="" links. See documentation for details.
+				-->
+
+				<ul>
+					<li>
+						<a href="index.html" title="商品列表"><span class="menu-item-parent">商品列表</span></a>
+					</li>
+					<li>
+						<a href="index1.html" title="产品订单"><span class="menu-item-parent">商品订单</span></a>
+					</li>
+					<li>
+						<a href="index2.html" title="转手商品"><span class="menu-item-parent">转手商品</span></a>
+					</li>
+					<li>
+						<a href="index3.html" title="用户信息"><span class="menu-item-parent">用户信息</span></a>
+					</li>
+					<li>
+						<a href="index4.html" title="退货申请"><span class="menu-item-parent">退货申请</span></a>
+					</li>
+				</ul>
+			</nav>
+
+		</aside>
+		<!-- END NAVIGATION -->
+
+		<!-- MAIN PANEL -->
+		<div id="main" role="main">
+
+
+			<!-- MAIN CONTENT -->
+			<div id="content">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+						<h1 class="page-title txt-color-greenLight">
+							<i class="fa fa-pencil-square-o fa-fw "></i> 
+								商品详情
+						</h1>
+					</div>
+				</div>
+
+				<!-- widget grid -->
+				<section id="widget-grid" class="">
+
+					<!-- row -->
+					<div class="row">
+
+						<!-- NEW COL START -->
+						<article class="col-sm-12">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-greenLight" id="page7-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false"data-widget-togglebutton="false"data-widget-deletebutton="false"data-widget-fullscreenbutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+									<h2>原主信息</h2>
+								</header>
+				
+								<!-- widget div-->
+								<div>
+									<div class="row">
+										<div class="col-sm-12"><hr/></div>
+										<div class="col-sm-12">
+											<div class="form-horizontal card">
+												<div class="col-sm-5">
+													<img class="userface" src="img/3.jpg" alt="">
+												</div>
+												<div class="col-sm-7">
+													<div class="row">
+														<div class="form-horizontal">
+															<label class="col-sm-2 control-label text-right">姓名：</label>
+															<label class="col-sm-10 control-label text-left username">南小征</label>
+														</div>
+														<div class="form-horizontal">
+															<label class="col-sm-2 control-label text-right">手机：</label>
+															<label class="col-sm-10 control-label text-left userphone">12345678910</label>
+														</div>
+														<div class="form-horizontal">
+															<label class="col-sm-2 control-label text-right">地址：</label>
+															<label class="col-sm-10 control-label text-left useraddress">上海市浦东新区花木路916号</label>
+														</div>
+														<div class="form-horizontal">
+															<label class="col-sm-2 control-label text-right">描述：</label>
+															<label class="col-sm-10 control-label text-left userdisc">一些全新的宝宝玩具</label>
+														</div>
+														<div class="form-horizontal">
+															<label class="col-sm-2 control-label text-right">备注：</label>
+															<label class="col-sm-10 control-label text-left usernote">无</label>
+														</div>
+														<div class="form-horizontal">
+															<label class="col-sm-2 control-label">预约时间：</label>
+															<div class="col-sm-10">
+																<label class="radio radio-inline">
+																	<input type="radio" name="a" disabled="disabled" class="weekday">
+																	工作日</label>
+																<label class="radio radio-inline">
+																	<input type="radio" name="a" disabled="disabled" class="weekend">
+																	周末</label>
+															</div>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-12"><hr/></div>
+									</div>
+									
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+						<!-- END COL -->
+				
+					</div>
+				
+					<!-- end row -->
+				
+				</section>
+				<!-- end widget grid -->
+
+				<!-- widget grid -->
+				<section id="widget-grid" class="">
+
+					<!-- row -->
+					<div class="row">
+
+						<!-- NEW COL START -->
+						<article class="col-sm-5">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-greenLight" id="page7-2" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false"data-widget-togglebutton="false"data-widget-deletebutton="false"data-widget-fullscreenbutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+									<h2>商品列表</h2>
+								</header>
+
+								<!-- widget div-->
+								<div class="goods">
+									<div class="row">
+										<div class="col-sm-2">
+										<a class="btn btn-success btn-sm newCommodity" href="javascript:void(0);">新建商品</a>
+										</div>
+										<div class="col-sm-6"></div>
+										<div class="col-sm-4">
+										<a class="btn btn-success btn-sm submiltBT" href="javascript:void(0);">全部上架</a>
+										<a class="btn btn-default btn-sm cancleBT" href="javascript:void(0);">取消登记</a>
+										</div>
+									</div>
+									
+									<hr>
+
+									<table class="table bdr">
+										<tbody id="newCommodityTb">
+											<!-- <tr>
+												<td style="width:170px;"><img src="img/1.png"></td>
+												<td><div class="name">商品名称</div><br>货号：201509011111001</td>
+												<td>X6</td>
+												<td style="text-align:center"><a class="btn btn-success btn-sm" href="javascript:void(0);">上架</a><br><p></p><a class="btn btn-success btn-sm" href="javascript:void(0);">编辑</a><br><p></p><a class="btn btn-default btn-sm" href="javascript:void(0);">删除</a></td>
+											</tr> -->
+										
+										</tbody>
+									</table>
+									
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+						<!-- END COL -->
+						<!-- NEW COL START -->
+						<article class="col-sm-7"  id="shangpinxinxi">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-greenLight" id="page7-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false"data-widget-togglebutton="false"data-widget-deletebutton="false"data-widget-fullscreenbutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+									<h2>商品信息</h2>
+								</header>
+				
+								<!-- widget div-->
+								<div>
+									<div class="row commodityInf" style="display:none">
+
+										<div class="col-sm-12">
+
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right" for="select-1">商品名称：</label>
+													<div class="col-sm-4">
+														<input class="form-control check_ inf1" placeholder="名称" type="text" >
+													</div>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">封面图片：</label>
+													<div class="col-sm-4">
+														<input type="file" class="btn btn-default  inf2" id="exampleInputFile1">
+														
+													</div>
+													<div class="col-sm-4 text-align-center">
+														<img class="cover check_" src="" style="max-height: 40px;max-width: 40px" />
+													</div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">估价：</label>
+													<div class="col-sm-2">
+														<input class="form-control gujia" placeholder="估价" type="text">
+													</div>
+													<div class="col-sm-6"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">原价：</label>
+													<div class="col-sm-2">
+														<input class="form-control check_ inf3" placeholder="原价" type="text">
+													</div>
+													<div class="col-sm-6"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">售价：</label>
+													<div class="col-sm-2">
+														<input class="form-control check_ inf4" placeholder="售价" type="text">
+													</div>
+													<div class="col-sm-6"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">数量：</label>
+													<div class="col-sm-2">
+														<input class="form-control check_ inf5" placeholder="数量" type="text">
+													</div>
+													<div class="col-sm-6"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">品牌：</label>
+													<div class="col-sm-2">
+														<input class="form-control check_ inf6" placeholder="品牌" type="text">
+													</div>
+													<div class="col-sm-6"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">新旧程度：</label>
+													<div class="col-sm-2">
+														<select class="form-control" id="select-1">
+															<option>全新</option>
+															<option>九成新</option>
+															<option>八成新</option>
+															<option>七成新</option>
+															<option>六成新</option>
+															<option>五成新</option>
+															<option>四成新</option>
+															<option>三成新</option>
+															<option>二成新</option>
+															<option>一成新</option>
+														</select>
+													</div>
+													<div class="col-sm-6"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">类别：</label>
+													<div class="col-sm-2">
+														<select class="form-control" id="select-2">
+															<option>玩具</option>
+															<option>童装</option>
+															<option>座椅</option>
+															<option>书籍</option>
+															<option>哺喂</option>
+														</select>
+													</div>
+													<div class="col-sm-2">
+														<select class="form-control" id="select-3">
+															<option>玩具</option>
+														</select>
+													</div>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">标签：</label>
+													<div class="col-sm-4 check_ inf7">
+														<input class="form-control tagsinput " value="" data-role="tagsinput" style="display: none;">
+													</div>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">商品信息：</label>
+													<div class="col-sm-4">
+														<textarea class="form-control check_ inf8" placeholder="商品信息" rows="4"></textarea>
+													</div>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">原主信息：</label>
+													<div class="col-sm-4">
+														<textarea class="form-control check_ inf9" placeholder="原主信息" rows="4"></textarea>
+													</div>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">商品图片：</label>
+													<div class="col-sm-4">
+														<input type="file" multiple="multiple" class="btn btn-default  inf10" id="commdImg">
+													</div>
+													<div class="col-sm-4">
+														
+													</div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal imgListShow" style="display:none">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">图片列表：</label>
+													
+													<div class="col-sm-8 displayNoneImg check_">
+													
+													</div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">商品视频：</label>
+													<div class="col-sm-4">
+														<input type="file" url="" accept="video/*"  class="btn btn-default  inf11" id="commdVideo">
+													</div>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal userVideo" style="display:none">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">视频：</label>
+													
+													<div class="col-sm-7 ">
+														<div class="videoDel">
+															<video  class="showVideo" style="width:100%" src='' controls autobuffer></video>
+														</div>
+													</div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">用户图片：</label>
+													<div class="col-sm-4">
+														<input type="file" url="" accept="image/*"  class="btn btn-default  inf12" id="commdVideo">
+													</div>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal userImgListShow" style="display:none">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">用户上传：</label>
+													<div class="col-sm-6 userUpImg">
+														<!-- <img src="" alt=""> -->
+													</div>
+													<div class="col-sm-2 "></div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-sm-12"><hr></div>
+										<div class="col-sm-12" style="text-align:center;">
+											<a class="btn btn-success btn-sm commodityInfEditSub" href="javascript:void(0);">保存</a>
+											<p></p>
+										</div>
+										
+									</div>
+									
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+						<!-- END COL -->
+
+						<!-- NEW COL START -->
+						<article class="col-sm-7" style="display:none" id="detaileInf">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-greenLight" id="page7-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false"data-widget-togglebutton="false"data-widget-deletebutton="false"data-widget-fullscreenbutton="false">
+								<!-- widget options:
+								usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+				
+								data-widget-colorbutton="false"
+								data-widget-editbutton="false"
+								data-widget-togglebutton="false"
+								data-widget-deletebutton="false"
+								data-widget-fullscreenbutton="false"
+								data-widget-custombutton="false"
+								data-widget-collapsed="true"
+								data-widget-sortable="false"
+				
+								-->
+								<header>
+									<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+									<h2>详细信息</h2>
+								</header>
+				
+								<!-- widget div-->
+								<div>
+									<div class="row commodityInf_1" >
+
+										<div class="col-sm-12">
+
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right" for="select-1">商品名称：</label>
+													<label class="col-sm-4 control-label text-left det1" for="select-1">可口可乐</label>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">封面图片：</label>
+													<div class="col-sm-3">
+														<img src="img/cocacolalogo.jpg" class="det2" alt="">
+													</div>
+													<div class="col-sm-5 text-align-center"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">估价：</label>
+													<label class="col-sm-4 control-label text-left dgujia" for="select-1">￥2.5</label>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">原价：</label>
+													<label class="col-sm-4 control-label text-left det3" for="select-1">￥2.5</label>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">售价：</label>
+													<label class="col-sm-4 control-label text-left det4" for="select-1">￥2</label>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">数量：</label>
+													<label class="col-sm-4 control-label text-left det5" for="select-1">500</label>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">品牌：</label>
+													<label class="col-sm-4 control-label text-left det6" for="select-1">Cocacola</label>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">新旧程度：</label>
+													<label class="col-sm-4 control-label text-left det7" for="select-1">全新</label>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">类别：</label>
+													<label class="col-sm-4 control-label text-left det8" for="select-1">玩具>玩具</label>
+													<div class="col-sm-4"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">标签：</label>
+													<label class="col-sm-6 control-label text-left det9" for="select-1"><span class="tagGoodTag">推荐</span><span class="tagGoodTag">饮料</span></label>
+													<div class="col-sm-2"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">商品信息：</label>
+													<label class="col-sm-6 control-label text-left det10" for="select-1">1886年，可口可乐在美国乔治亚州亚特兰大市诞生，自此便与社会发展相互交融，激发创新灵感。现在，它每天为全球的人们带来怡 神畅快的美妙感受。目前，全球每天有17亿人次的消费者在畅饮可口可乐公司的产品，大约每秒钟售出19,400瓶饮料。目前为全球最大的饮料厂商。</label>
+													<div class="col-sm-2"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">原主信息：</label>
+													<label class="col-sm-6 control-label text-left det11" for="select-1">真正使可口可乐大展拳脚的，是两位美国律师。他们到当时可口可乐公司的老板阿萨·坎德勒的办公室，提出一个创新的商业合作方式，就是由可口可乐公司售给他们糖浆，他们自己投资生产的公司及售卖点，将糖浆兑水，装瓶，出售。按可口可乐公司的要求生产及品质保证。</label>
+													<div class="col-sm-2"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">商品图片：</label>
+													<div class="col-sm-6 det12">
+														<img src="img/add1.jpg" alt="">
+														<img src="img/add2.jpg" alt="">
+														<img src="img/add3.jpg" alt="">
+														<img src="img/add4.jpg" alt="">
+														<img src="img/add5.jpg" alt="">
+													</div>
+													<div class="col-sm-2">
+														
+													</div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">商品视频：</label>
+													<div class="col-sm-6 ">
+														<video class="det13"  src='' controls autobuffer></video>
+													</div>
+													<div class="col-sm-2"></div>
+												</div>
+											</div>
+											<p></p>
+											<div class="form-horizontal">
+												<div class="row">
+													<label class="col-sm-4 control-label text-right">用户上传：</label>
+													<div class="col-sm-6 det14">
+														<img src="img/user1.jpg" alt="">
+														<img src="img/user2.jpg" alt="">
+													</div>
+													<div class="col-sm-2"></div>
+												</div>
+											</div>
+
+										</div>
+										<div class="col-sm-12"><hr></div>
+										
+									</div>
+									
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+						<!-- END COL -->
+				
+					</div>
+				
+					<!-- end row -->
+				
+				</section>
+				<!-- end widget grid -->
+
+			</div>
+			<!-- END MAIN CONTENT -->
+
+		</div>
+		<!-- END MAIN PANEL -->
+
+		<!-- SHORTCUT AREA : With large tiles (activated via clicking user name tag)
+		Note: These tiles are completely responsive,
+		you can add as many as you like
+		-->
+		<div id="shortcut">
+			<ul>
+				<li>
+					<a href="#inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
+				</li>
+				<li>
+					<a href="#calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
+				</li>
+				<li>
+					<a href="#gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
+				</li>
+				<li>
+					<a href="#invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
+				</li>
+				<li>
+					<a href="#gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
+				</li>
+				<li>
+					<a href="javascript:void(0);" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
+				</li>
+			</ul>
+		</div>
+		<!-- END SHORTCUT AREA -->
+
+		<!--================================================== -->
+
+		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+		<script data-pace-options='{ "restartOnRequestAfter": true }' src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/pace/pace.min.js"></script>
+
+		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/libs/jquery-2.0.2.min.js"></script>
+		<script>
+			if (!window.jQuery) {
+				document.write('<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/libs/jquery-2.0.2.min.js"><\/script>');
+			}
+		</script>
+
+		<!--<script>
+			if (!window.jQuery.ui) {
+				document.write('<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+			}
+		</script>-->
+
+		<!-- IMPORTANT: APP CONFIG -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/app.config.js"></script>
+
+		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
+
+		<!-- BOOTSTRAP JS -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/bootstrap/bootstrap.min.js"></script>
+
+		<!-- CUSTOM NOTIFICATION -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/notification/SmartNotification.min.js"></script>
+
+		<!-- JARVIS WIDGETS -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/smartwidgets/jarvis.widget.min.js"></script>
+
+		<!-- EASY PIE CHARTS -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+
+		<!-- SPARKLINES -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+		<!-- JQUERY VALIDATE -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+
+		<!-- JQUERY MASKED INPUT -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+
+		<!-- JQUERY SELECT2 INPUT -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/select2/select2.min.js"></script>
+
+		<!-- JQUERY UI + Bootstrap Slider -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+		<!-- browser msie issue fix -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+		<!-- FastClick: For mobile devices -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/fastclick/fastclick.min.js"></script>
+
+		<!--[if IE 8]>
+
+		<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+
+		<![endif]-->
+
+		<!-- Demo purpose only -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/demo.min.js"></script>
+
+		<!-- MAIN APP JS FILE -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/app.min.js"></script>
+
+		<!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
+		<!-- Voice command : plugin -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/speech/voicecommand.min.js"></script>
+
+		<!-- PAGE RELATED PLUGIN(S) -->
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/maxlength/bootstrap-maxlength.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/clockpicker/clockpicker.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/bootstrap-tags/bootstrap-tagsinput.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/noUiSlider/jquery.nouislider.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/ion-slider/ion.rangeSlider.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/colorpicker/bootstrap-colorpicker.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/knob/jquery.knob.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/x-editable/moment.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/x-editable/jquery.mockjax.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/x-editable/x-editable.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/typeahead/typeahead.min.js"></script>
+		<script src="http://7xjz61.com1.z0.glb.clouddn.com/smartadmin_html/js/plugin/typeahead/typeaheadjs.min.js"></script>
+		
+		<script src="http://dev.api.zpage.me/sdk.js"></script>
+		<script src="../js/public.js"></script>
+
+
+		<script type="text/javascript">
+			var tipes =["请填写商品名称","请选择商品封面图片","请填写商品原价","请填写商品售价","请填写商品数量","请填写商品品牌","请填写标签","请填写商品信息","请填写原主信息","请选择商品图片","请选择商品视频","请填写估计"];
+			var menue_data_ =[["玩具","童车","学步车"],["贴身衣物","童装","童鞋","童包"],["推车","安全座椅","腰凳","餐椅"],["1-2岁","3-4岁","5-6岁","育儿"],["储奶袋","奶粉","辅食机","奶瓶","餐具","紫外线消毒柜"]];
+			var search = window.location.search.replace(/\?/, '');
+			var parameters_str = search.split(/&/);
+			var parameters = {};
+			for (var i in parameters_str) {
+				var kv = parameters_str[i].split(/=/);
+				parameters[kv[0]] = kv[1];
+			}
+			wxId_ =parameters['wxId'];
+			//userPhone_ =parameters['userPhone'];  //flag 为 sellInfo userPhone
+			reservationTime_ = parameters['reservationTime'].replace('%20',' ');
+			commodID_ =parameters['commodID'];
+var date_;
+			$(document).ready(function(){
+
+				var collection_ =shoots.collection("guji");
+				var selected1 =$("#select-1").val(),
+					selected2 =$("#select-2").val(),
+					selected3 =$("#select-3").val();
+
+				initPlan(); //初始化原主个人信息
+
+
+				$(".newCommodity").on('click',function(){
+					 clearEditPlan();
+					createOption(menue_data_[0]);
+					$("#shangpinxinxi").show();
+					$(".commodityInf").show();
+					 $("#detaileInf").hide();
+					$(".commodityInfEditSub").attr('data-kind','newEdit');
+				});
+				
+				$("#newCommodityTb").on('click','tr',function(ev){
+					
+					date_ =this;
+					$(this).siblings().removeClass('trch');
+
+					if($(this).hasClass('trch')){
+						$(this).removeClass('trch');
+						$(".commodityInf_1").hide();
+					}else{
+						$(this).addClass('trch');
+						$(".commodityInf_1").show();
+					}
+
+					var tdType =ev.target.dataset.bttype;
+					var commodId =ev.target.dataset.commodid;
+						if(tdType =='reEdit'){
+							 $("#shangpinxinxi").show();
+							 $("#detaileInf").hide();
+							collection_.find({"commodityID":commodId},function(err,data){
+								if(data.length !=0){
+									writeDataToEditPlan(data[0]);
+									mouseOver();
+									$(".commodityInf").show();
+									$(".commodityInfEditSub").attr({'data-kind':'reEdit','data-commodityID':commodId});
+								}
+							});
+						}else if(tdType =='deleBt'){
+							collection_.remove({"commodityID":commodId});
+							$($(this).parent()[0]).remove();
+							alert("删除成功");
+							window.location.reload();
+						}else if(tdType =='groundingBt'){
+							collection_.find({"commodityID":commodId,"isSelling":true},function(err,data){
+								if(data.length !=0){
+									alert("该商品已上架");
+								}else{
+									collection_.update({"commodityID":commodId},{$set:{"isSelling":true,"lastModify":CurentTime()}});
+									
+									alert("上架成功");
+									$("#"+commodId+"").find(".isSell").text("已上架");
+								}
+							});
+						}else{
+							$("#shangpinxinxi").hide();
+							$("#detaileInf").show();
+							writeInfToDetailsPlan(this.id);
+						}
+				});
+
+				$(".commodityInfEditSub").on('click',function(){
+					savecommodityInf();
+				});
+
+				$(".submiltBT").on('click',function(){
+					var trList =$("#newCommodityTb").children();
+					for(var i=0;i,trList.length;i++){
+						collection_.update({"flag":"sellInfo","commodityID":trList[i].id},{$set:{"isSelling":true,"lastModify":CurentTime()}});
+						$(trList[i]).find(".isSell").text("已上架");
+						if(i==trList.length-1){
+							alert("全部上架成功");
+						}
+					}
+					console.log($("#newCommodityTb").children()[0].id);
+				});
+				$(".cancleBT").on('click',function(){
+					collection_.remove({"flag":"reservationInf_","reservationTime":reservationTime_});
+					collection_.remove({"flag":"sellInfo","reservationTime":reservationTime_});
+					window.location.href ='index2.html';
+				});
+				
+				$("#select-1").on('change',function(){
+					console.log($(this).val());
+				});
+				$("#select-2").on('change',function(){
+					Type =$(this)[0].selectedIndex;
+					console.log(Type);
+					createOption(menue_data_[Type]);
+				});
+
+				
+					function mouseOver(){
+						$(".displayNoneImg img,.videoDel,.userUpImg img").mousemove(function(event) {
+							$(this).css({"cursor":"pointer"});
+							
+							if($(this).parent().find(".closeImgList").length ==0){
+								var html='<img src="img/x_alt.png" class="closeImgList">';
+								$(this).parent().append(html);
+							}
+
+						}).mouseout(function(event){
+							if($(event.toElement).hasClass('closeImgList')){
+
+								$(".closeImgList").on('click mouseover mouseout',function(ev){
+									if(ev.type =='click'){
+										$(this).parent().remove();
+									}else if(ev.type =='mouseover'){
+										$(this).css({"cursor":"pointer"});
+									}else{
+										$(this).remove();
+									}
+								});
+								
+							}else{
+								if($(this).parent().find(".closeImgList").length !=0){
+									
+									$(this).parent().find(".closeImgList").remove();
+								}
+							}
+							
+						});
+					}
+				
+				function writeInfToDetailsPlan(commodityID){
+					collection_.find({"flag":"sellInfo","commodityID":commodityID},function(err,data){
+						if(data.length !=0){
+							var d =data[0];
+							$(".det1").text(d.commodityName);
+							$(".det2").attr('src',d.commodityCoverImg);
+							$(".dgujia").text(d.gujia+"用户同意:"+d.gujiaStatus);
+							$(".det3").text(d.primeCost);
+							$(".det4").text(d.sellingPrice);
+							$(".det5").text(d.commodityNum);
+							$(".det6").text(d.commodityBrand);
+							$(".det7").text(d.commodityNewLeave);
+							$(".det8").text(d.commodityGenre.split("_")[0]+">"+d.commodityGenre.split("_")[1]);
+							$(".det9").children().remove();
+							var tagList =d.commodityTag.split(' '),html='';
+								for(var i=0;i<tagList.length;i++){
+									html +='<span class="tagGoodTag">'+tagList[i]+'</span>';
+								}
+							$(".det9").append(html);
+							$(".det10").text(d.commodityDisc);
+							$(".det11").text(d.originalOwnerInf);
+							$(".det12").children().remove();
+							if(d.businessCommodityPic !=undefined){
+								var imgList =d.businessCommodityPic,html1='';
+									
+									for(var j=0;j<imgList.length;j++){
+										html1 +='<div style="display:inline-block;position:relative"><img src='+imgList[j]+' alt=""></div>';
+									}
+								$(".det12").append(html1);
+							}
+
+							//商家上传视频$(".det13")
+							if(d.businessCommodityVideo !=undefined){
+								$(".det13").attr('src',d.businessCommodityVideo);
+							}
+
+							//用户上传图片
+							$(".det14").children().remove();
+							if(d.userCommodityPic !=undefined){
+								var userImgList =d.userCommodityPic,html='';
+								for(var k=0;k<userImgList.length;k++){
+									html +='<img src='+userImgList[k]+' alt="">';
+								}
+								$(".det14").append(html);
+							}
+						}
+					});
+				}
+				function createOption(data){
+					$("#select-3").children().remove();
+					var html ='';
+					for(var i=0;i<data.length;i++){
+						html +='<option>'+data[i]+'</option>';
+					}
+					$("#select-3").append(html);
+				}
+				
+				function savecommodityInf(){
+					// if(checkForm()){
+						var businessCommodityPic_ =[],userCommodityPic_ =[];
+							for(var i=0;i<$(".displayNoneImg").children().find(".imgListSize").length;i++){
+								// var img_ =$(".displayNoneImg").children().find(".imgListSize")[i],
+								// 	base64Img =getBase64Image(img_);
+								// businessCommodityPic_.push(base64Img);
+								var img_src =$(".displayNoneImg").children().find(".imgListSize")[i].src;
+								businessCommodityPic_.push(img_src);
+							}
+							for(var i=0;i<$(".userUpImg").children().find(".imgListSize").length;i++){
+								var img_src =$(".userUpImg").children().find(".imgListSize")[i].src;
+								userCommodityPic_.push(img_src);
+							}
+						var sellinf_ ={
+							userWxID : wxId_,
+						//	userPhone : userPhone_,   //userPhone 可以去掉
+							flag : "sellInfo",
+							reservationTime : reservationTime_,
+							
+							commodityName : $(".inf1").val(),
+							commodityCoverImg :$("#exampleInputFile1").parent().parent().find(".cover")[0].src,
+							gujia : $(".gujia").val(),
+							primeCost : $(".inf3").val(),
+							sellingPrice : Number($(".inf4").val()),
+							commodityNum : Number($(".inf5").val()),
+							commodityBrand : $(".inf6").val(),
+							commodityNewLeave : $("#select-1").val(),
+							commodityGenre : $("#select-2").val()+'_'+$("#select-3").val(),
+							commodityTag : $(".inf7").text().trim(),
+							commodityDisc : $(".inf8").val(),
+							originalOwnerInf : $(".inf9").val(),
+							businessCommodityPic : businessCommodityPic_,
+							businessCommodityVideo : $(".showVideo").attr('src'),
+							userCommodityPic : userCommodityPic_
+						};
+						var kindEdit =$(".commodityInfEditSub").attr('data-kind');
+						if(kindEdit =='newEdit'){
+							sellinf_.commodityID =CurentTime_();
+							collection_.insert(sellinf_);
+
+							console.log(CurentTime_());
+
+
+							collection_.update({"flag":"reservationInf_","reservationTime":reservationTime_},{$set:{"isEffic":"true"}});
+								console.log(sellinf_);
+								$(".commodityInf").hide();
+								clearEditPlan();
+								initPlan();
+						}else if(kindEdit =='reEdit'){
+						var reEditCommodId_ =$(".commodityInfEditSub").attr('data-commodityID');
+
+							collection_.update({"flag":"sellInfo","commodityID":reEditCommodId_,"userWxID":wxId_},{$set:sellinf_});
+								alert("保存成功");
+								$(".commodityInf").hide();
+								clearEditPlan();
+								reEditSave(reEditCommodId_);
+						}
+					// }
+				}
+				$("#commdVideo").change(function(){
+					var data = this;
+				   	if (data.value != "") {
+				   		var name = 'test';
+				   		var file = shoots.file(name, data);
+				   		file.save(function(err, data) {
+				   			alert("视频上传成功");
+				   			$(".userVideo").show();
+							$("#commdVideo").attr('url',data.url);
+							$("#commdVideo").attr('fileType',data.data.type.split('/')[0]);
+							$(".showVideo").attr("src",data.url);
+				   		}, function(err) {
+				   			console.log(err);
+				   		});
+				   	}
+				   	
+				});
+				function checkForm(){
+					var isPass =true;
+					$(".commodityInf .check_").each(function(index,element){
+						if(index!=6 && index!=1 && index!=9 && index!=10 && index!=11){
+							if($(element).val().trim() ===''){
+								alert(tipes[index]+index);
+								isPass =false;
+								return false;
+							}
+						}else if(index==6){
+							if($(".bootstrap-tagsinput").text() ===''){
+								alert(tipes[index]);
+								isPass =false;
+								return false;
+							}
+						}else if(index ==1){
+							if($(element).attr('src') ===''){
+								alert(tipes[index]);
+								isPass =false;
+								return false;
+							}
+						}else if(index ==10){
+							if($(element).attr('url') ===''){
+								alert(tipes[index]);
+								isPass =false;
+								return false;
+							}
+						}else if(index ==11){
+
+						}else{
+							if($(element).children().length ==0){
+								alert(tipes[index]);
+								isPass =false;
+								return false;
+							}
+						}
+					});
+					// var inf11Type =$("#commdVideo").attr('fileType');
+					// if(inf11Type!='video'){
+					// 	alert("选择的商品视频格式不对");
+					// 	return false;
+					// }
+					if($(".gujia").val() === ''){
+						alert(tipes[11]);
+						isPass =false;
+					}
+					
+					return isPass;
+				}
+				function initPlan(){
+					var data2_;
+					collection_.find({"flag":'user',"userWxID":wxId_},function(err,data){
+						data2_ =data[0];
+						collection_.find({"flag":'reservationInf_',"userWxID":wxId_,"reservationTime":reservationTime_},function(err,data){
+
+							writeDataToInfPlan(data[0],data2_);
+						});
+					});
+
+					collection_.find({"flag":"sellInfo","userWxID":wxId_,"reservationTime":reservationTime_},function(err,data){
+						if(data.length !=0){
+							$("#newCommodityTb").children().remove();
+							createNewCommodity(data);
+						}
+					});
+
+				}
+
+				function reEditSave(commodityID){
+					var tr =$("#newCommodityTb #"+commodityID+"");
+					collection_.find({"flag":"sellInfo","commodityID":commodityID,"userWxID":wxId_},function(err,data){
+						if(data.length !=0){
+							writeReEdit(data[0]);
+						}
+					});
+					function writeReEdit(data){
+						$(tr.find('img')[0]).attr('src',data.commodityCoverImg);
+						$(tr.find('.name')[0]).text(data.commodityName);
+						$(tr.find('.commodNum')[0]).text('X'+data.commodityNum);
+					}
+
+				}
+				function createNewCommodity(data){
+					if(data.length ==0){
+						return false;
+					}
+					var html ='';
+					for(var i=0;i<data.length;i++){
+						var whichTrCh ='',isSell='上架';
+							if(data[i].commodityID ==commodID_){
+								whichTrCh ='trch';
+							}
+						
+							if(data[i].isSelling){
+								isSell ='已上架';
+							}else{
+								isSell ='上架';
+							}
+						html +='<tr id='+data[i].commodityID+' class='+whichTrCh+'>'
+								+'<td style="width:170px;"><img src='+data[i].commodityCoverImg+'></td>'
+								+'<td><div class="name">'+data[i].commodityName+'</div><br>货号：'+data[i].commodityID+'</td>'
+								+'<td class="commodNum">X'+data[i].commodityNum+'</td>'
+								+'<td style="text-align:center"><a class="btn btn-success btn-sm isSell" data-btType="groundingBt" data-commodID='+data[i].commodityID+' href="javascript:void(0);">'+isSell+'</a><br><p></p><a class="btn btn-success btn-sm " data-btType="reEdit" data-commodID='+data[i].commodityID+' href="javascript:void(0);">编辑</a><br><p></p><a class="btn btn-default btn-sm " data-btType="deleBt" data-commodID='+data[i].commodityID+' href="javascript:void(0);">删除</a></td>'
+							+'</tr>';
+					}
+					$("#newCommodityTb").append(html);
+				}
+				function writeDataToEditPlan(data){
+						$(".inf1").val(data.commodityName);
+						$(".cover").attr('src',data.commodityCoverImg);
+						$(".gujia").val(data.gujia);
+						$(".inf3").val(data.primeCost);
+						$(".inf4").val(data.sellingPrice);
+						$(".inf5").val(data.commodityNum);
+						$(".inf6").val(data.commodityBrand);
+						$("#select-1").val(data.commodityNewLeave);
+						$("#select-2").val(data.commodityGenre.split('_')[0]);
+						var index_=$("#select-2")[0].selectedIndex;
+						createOption(menue_data_[index_]);
+						console.log(index_);
+						$("#select-3").val(data.commodityGenre.split('_')[1]);
+
+						var tagList =data.commodityTag.split(' ');
+						 $(".bootstrap-tagsinput").children('span').remove();
+						
+						var html ='';
+						for(var i=0;i<tagList.length;i++){
+							html +='<span class="tag label label-info">'+tagList[i]+'<span data-role="remove"></span></span>';
+						}
+						$(".bootstrap-tagsinput").prepend(html);
+						$(".inf8").val(data.commodityDisc);
+						$(".inf9").val(data.originalOwnerInf);
+						if(data.businessCommodityPic !=undefined){
+							var imgList =data.businessCommodityPic;
+							if(imgList.length !=0){
+								$(".imgListShow").show();
+								$(".displayNoneImg").children().remove();
+								var html ='';
+								for(var i=0;i<imgList.length;i++){
+									 html +='<div style="display:inline-block;position:relative"><img src='+imgList[i]+' class="imgListSize"></div>';
+								}
+								$(".displayNoneImg").append(html);
+							}
+						}
+						if(data.businessCommodityVideo !=undefined){
+							$(".inf11").attr('url',data.businessCommodityVideo);
+							$(".showVideo").attr("src",data.businessCommodityVideo);
+							$("#commdVideo").attr('fileType','video');
+						}
+						
+						//用户上传图片
+						if(data.userCommodityPic !=undefined){
+							$(".userUpImg").children().remove();
+							var userImgList =data.userCommodityPic,
+								html ='';
+								if(userImgList.length!=0){
+									$(".userImgListShow").show();
+								}
+							for(var k=0;k<userImgList.length;k++){
+
+													
+								html +='<div style="display:inline-block;position:relative"><img src='+userImgList[k]+' class="imgListSize"></div>';
+							}
+							$(".userUpImg").append(html);
+						}
+						
+
+						//商家上传视频
+						// $(".inf11").val(data.businessCommodityVideo);
+				}
+
+
+			
+				function clearEditPlan(){
+
+					$(".inf1").val('');
+					$(".inf2").val('');
+					$(".cover").attr('src','');
+					$(".gujia").val();
+					$(".inf3").val('');
+					$(".inf4").val('');
+					$(".inf5").val('');
+					$(".inf6").val('');
+					$("#select-1").val('全新');
+					$("#select-2").val('玩具');
+					$("#select-3").val('玩具');
+				    $(".bootstrap-tagsinput").children('span').remove();
+				    $('.tagsinput').tagsinput('removeAll')
+					$(".inf8").val('');
+					$(".inf9").val('');
+					$(".inf10").val('');
+					$(".inf11").val('');
+					$(".inf12").val('');
+					$(".imgListShow").hide();
+					$(".userImgListShow").hide();
+					$(".displayNoneImg").children().remove();
+					$(".showVideo").attr('src','');
+					$(".userUpImg").children().remove();
+
+					//商家上传视频还没写
+					// $(".inf11").val(data.businessCommodityVideo);
+
+					// window.location.reload();
+				}
+				function writeDataToInfPlan(data1,data2){
+					$(".username").text(data1.reservationName);
+					$(".userface").attr('src',data2.userFace);
+					$(".userphone").text(data1.reservationPhone);  //userPhone flag 为 user
+					$(".useraddress").text(data1.reservationAddress);
+					$(".userdisc").text(data1.goodsDisc);
+					$(".usernote").text(data1.userRemark);
+					if(data1.reservationDate ==="weekday"){
+						$(".weekday").attr("checked","checked");
+					}
+					if(data1.reservationDate ==="weekend"){
+						$(".weekend").attr("checked","checked");
+					}
+				}
+				
+				
+				$(".inf2 ").change(function(ev){//模拟上传图片
+					var files = event.target.files, file;		
+				    if (files && files.length > 0) {
+				      file = files[0];
+				      if(file.size > 1024 * 1024 * 2) {
+				        alert('图片大小不能超过 2MB!');
+				        return false;
+				      }
+				     var url =  uploadImg(files[0]);
+				       $(this).parent().parent().find(".cover").attr("src",url);
+				      // var URL = window.URL || window.webkitURL;
+				      // var imgURL = URL.createObjectURL(file);
+				    	
+				    }
+				});
+				function uploadImg(file){
+					var returnData = null;
+					var form = new FormData();
+					form.append( 'file', file );
+				    $.ajax({
+				        url: '../serv/upload/upload',
+				        data: form,
+				        processData: false,
+				        contentType :false,
+	//					dataType: 'json',
+				        type: 'POST',
+				        async:false,
+				        success: function (data) {
+				            console.log(data);
+				            returnData = data.url;
+				        },
+				        error:function(err){
+				        	console.log(err);
+				        	returnData = null;
+				        }
+				    });
+				    return returnData;
+				}
+				$(".inf10").change(function(ev){
+					var files = event.target.files, file;
+					if (files && files.length > 0) {
+						var URL = window.URL || window.webkitURL;
+				      	var imgURL;
+				      	var html ='';
+						for(var i=0;i<files.length;i++){
+							file =files[i];
+							if(file.size > 1024 * 1024 * 2) {
+						        alert('图片大小不能超过 2MB!');
+						        return false;
+						    }
+						    imgURL =  uploadImg(file);
+				      			// imgURL = URL.createObjectURL(file);
+				      			html +='<div style="display:inline-block;position:relative"><img  src='+imgURL+' class="imgListSize"  /></div>';
+						}
+			      		$(".displayNoneImg").append(html);
+			      		mouseOver();
+						$(".imgListShow").show();
+					}else{
+						$(".imgListShow").hide();
+					}
+				});
+				$(".inf12").change(function(ev){
+					var files = event.target.files, file;
+					if (files && files.length > 0) {
+						var URL = window.URL || window.webkitURL;
+				      	var imgURL;
+				      	var html ='';
+						for(var i=0;i<files.length;i++){
+							file =files[i];
+							if(file.size > 1024 * 1024 * 2) {
+						        alert('图片大小不能超过 2MB!');
+						        return false;
+						    }
+						    imgURL =  uploadImg(file);
+				      			// imgURL = URL.createObjectURL(file);
+				      			html +='<div style="display:inline-block;position:relative"><img  src='+imgURL+' class="imgListSize"  /></div>';
+						}
+			      		$(".userUpImg").append(html);
+			      		mouseOver();
+						$(".userImgListShow").show();
+					}else{
+						$(".userImgListShow").hide();
+					}
+				});
+				function getBase64Image(img) {
+				      var canvas = document.createElement("canvas");
+				      canvas.width = img.naturalWidth;
+				      canvas.height = img.naturalHeight;
+				      var ctx = canvas.getContext("2d");
+				      ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+				      var dataURL = canvas.toDataURL("image/png");
+				      return dataURL ;
+				}
+
+				function CurentTime_(){ 
+			        var now = new Date();
+			       
+			        var year = now.getFullYear();       //年
+			        var month = now.getMonth() + 1;     //月
+			        var day = now.getDate();            //日
+			       
+			        var hh = now.getHours();            //时
+			        var mm = now.getMinutes();          //分
+			        var ms = now.getSeconds();
+			        var clock = year.toString();
+			       
+			        if(month < 10)
+			            clock += "0";
+			        clock += month ;
+			       
+			        if(day < 10)
+			            clock += "0";
+			           
+			        clock += day ;
+			       
+			        if(hh < 10)
+			            clock += "0";
+			           
+			        clock += hh ;
+			        if (mm < 10) clock += '0'; 
+			        clock += mm ; 
+			        if(ms < 10) clock += '0';
+			        clock += ms;
+			        return clock; 
+			    } 
+
+			  
+			});
+		</script>
+
+	
+	</body>
+
+</html>

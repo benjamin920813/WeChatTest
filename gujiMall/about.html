@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>咕哩</title>
+
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" type="text/css" href="http://s3.zpage.me/cdn/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="http://s3.zpage.me/cdn/multipage.css">
+		<link rel="stylesheet" type="text/css" href="style.css?v=1">
+	</head>
+
+	<body>
+		<div id="loading" class="loading hidden"><img src="http://s3.zpage.me/cdn/loading.gif"></div>
+		<span class="display-top-mark">已经是第一页</span>
+		<span class="display-bottom-mark">已经是最后一页</span>
+
+		<div class="display-panel">
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page1.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page2.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page3.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page4.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page5.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page6.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page7.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page8.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page9.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page10.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+			<div class="display-page">
+				<img class="imgImprove" src="img/page11.gif">
+
+				<div class="page-down-1 wl-animate"><img src="img/down.png"></div>
+			</div>
+
+
+		</div>
+
+
+		<audio id="background-music" class="hidden" src="music2.mp3" loop="loop" autoplay="autoplay"></audio>
+		<div id="music_switch" class="music-switch">
+			<img id="music_on" class="img-responsive" src="ic_volume_up_black_48dp.png" alt="声音开">
+			<img id="music_off" class="img-responsive hidden" src="ic_volume_off_black_48dp.png" alt="声音关">
+		</div>
+
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=47813915" charset="UTF-8"></script>
+		<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+		<script src="http://s3.zpage.me/cdn/bootstrap.min.js"></script>
+		<script src="http://s3.zpage.me/cdn/hammer.min.js"></script>
+		<script src="http://s3.zpage.me/cdn/multipage-business.js"></script>
+		<script>
+			$( window ).load(function(){
+				var musicplayer = $("#background-music").get(0);
+
+				musicplayer.volume = 0.4;
+
+				$("#music_switch").click(function () {
+				    if (musicplayer.paused === true) {
+				        musicplayer.play();
+				        $("#music_on").removeClass("hidden");
+				        $("#music_off").addClass("hidden");
+				    } else {
+				        musicplayer.pause();
+				        $("#music_on").addClass("hidden");
+				        $("#music_off").removeClass("hidden");
+				    }
+				});
+				
+				var musicFirstPlay = false;
+
+				if($('#music_off').hasClass('hidden')){
+					musicFirstPlay = true;
+				}
+
+				var hammertime = new Hammer($('.display-page:first').get(0), { threshold: 0, pointers: 0 });
+				hammertime.on('pan', function(ev) {
+					if (musicFirstPlay) {
+						musicFirstPlay=false;
+						musicplayer.play();
+					}
+				});
+
+				$('.page-5-2, .page-3-4, .page-3-5, .page-3-6, .page-3-7').click(function(){
+					$(this).hide(600);
+				});
+
+				$('.page-5-3, .page-3-3').click(function(){
+					$('.page-5-3, .page-5-2, .page-3-3, .page-3-4, .page-3-5, .page-3-6, .page-3-7').show();
+				});
+			});
+		</script>
+		<script>
+		var ZP_DATA = {
+			share: {
+				wxshare_cover: '',
+				wxshare_title: 'Hello, Baby! Hello, World!',
+				wxshare_desc: '咕哩（Grecycle）— 分享闲置母婴产品的平台'
+			}
+		};
+		</script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+			$.getJSON("serv/wechat/share?uri="+encodeURIComponent(window.location.href),function(config){
+				
+				var config = JSON.parse(config.config);
+				console.log(config);
+				var WxShare = function(title,img) {
+
+					var share_title = ZP_DATA.share.wxshare_title;
+					if (title) {
+					    share_title = title;
+					} else {
+					    if (typeof(WXSHARE_TITLE) != 'undefined') {
+					        share_title = WXSHARE_TITLE;
+					    }   
+					}   
+					var share_img = img ? img : wxshare_img;
+
+					wx.onMenuShareTimeline({
+					    title: share_title, // 分享标题
+					    link: window.location.href, // 分享链接
+					    imgUrl: share_img, // 分享图标
+					    success: function () {
+					    // 用户确认分享后执行的回调函数
+					    },  
+					    cancel: function () {
+					    // 用户取消分享后执行的回调函数
+					    }   
+					}); 
+
+					wx.onMenuShareAppMessage({
+					    title: share_title, // 分享标题
+					    desc: ZP_DATA.share.wxshare_desc, // 分享描述
+					    link: window.location.href, // 分享链接
+					    imgUrl: share_img, // 分享图标
+					    type: '', // 分享类型,music、video或link，不填默认为link
+					    success: function () {
+					    // 用户确认分享后执行的回调函数
+					    },  
+					    cancel: function () {
+					    // 用户取消分享后执行的回调函数
+					    }   
+					}); 
+				}
+				wx.config(config);
+				wx.ready(function(){
+					WxShare(null, "http://www.grecycle.com.cn/img/mall.jpg");
+				});
+			});
+		</script>
+	</body>
+</html>
+	

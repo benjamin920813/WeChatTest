@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>我卖出的</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css?v=1">
+		<style type="text/css" >
+			body{
+				overflow-x: hidden;
+				background-color: #ebebeb;
+			}
+			.uploadImg,.uploadVideo{
+				display: none;
+			}
+			*{
+				font-family: Arial, 'Hiragino Sans GB', md-hsgb, 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+			}
+			#loading{
+			    display: none;
+			    position: absolute;
+			    width: 100%;
+			    height: 100%;
+			    background-color: rgba(0, 0, 0, 0.71);
+			    top: 0px;
+			}
+			#loading img{
+
+			    position: absolute;
+			    top: 50%;
+			    margin-top: -30px;
+			    left: 50%;
+			    margin-left: -30px;
+			    animation-duration:2s;
+			    animation-fill-mode:both;
+			    animation-name:loading;
+			    animation-iteration-count: infinite;
+			    animation-timing-function:linear;
+
+			    -webkit-animation-duration:2s;
+			    -webkit-animation-fill-mode:both;
+			    -webkit-animation-name:loading;
+			    -webkit-animation-iteration-count: infinite;
+			    -webkit-animation-timing-function:linear;
+			}
+			@keyframes loading {
+			  from {
+			    transform:rotate(0deg);
+			    -webkit-transform:rotate(0deg);
+			  }
+			  to {
+			   transform:rotate(360deg);
+			   -webkit-transform:rotate(360deg);
+			  }
+			}
+			@-webkit-keyframes loading {
+			  from {
+			    transform:rotate(0deg);
+			    -webkit-transform:rotate(0deg);
+			  }
+			  to {
+			   transform:rotate(360deg);
+			   -webkit-transform:rotate(360deg);
+			  }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="pg-content">
+			<div class="sell-tipes">
+				<p>
+					温馨提示：照片和视频是指您家宝贝和你卖出产品的昔日合影。咕哩希望可以和大家一起创立一个温暖并且有趣的平台。此项为自选项，并非强制。上传成功后会在产品详情页中出现并且展示给卖家。
+				</p>
+			</div>
+		</div>
+		<div class="p4-email">
+			<a href="javascript:alert('邮箱：cs@grecycle.com.cn')"><img src="img/e-mail.png" class="p4_email_img" alt=""></a>
+		</div>
+		<div class="p4-tel" style="">
+			<a href="tel:15026808450"><img src="img/phone.png" class="p4_email_img" alt=""></a>
+		</div>
+		<div id="loading">
+			<img src="img/loading.png">
+		</div>
+		<div id="confirm">
+			<div id="container" target="null">
+				<p class="text">
+					同意这个估价吗？
+				</p>
+				<button result="ok">同意</button><button result="not_ok">拒绝</button><button result="cancle">取消</button>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery.min.js"></script>
+	<script src="http://dev.api.zpage.me/sdk.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/wxid.js"></script>
+	<script>
+		$(function(){
+			var loading = function(){
+				$("#loading").show();
+			}
+			var hideLoad = function(){
+				$("#loading").hide();
+			}
+			var collections = shoots.collection("guji");
+			collections.find({"userWxID": wxID,"flag" : "reservationInf_"},function(err,data){
+				if(data.length>0){
+					for(var k = 0 ; k < data.length; k++){
+						$.ajax({
+							type:"post",
+							url:"serv/dbsearch/search",
+							data:{"userWxID" : wxID,"flag" : "sellInfo","reservationTime":data[k].reservationTime},
+							async:false,
+							success : function(data){
+								var html = '';
+								if(data.length!==0)
+									for(var i in data){
+											html +=''
+												+'<div class="sell-list '+data[i].commodityID+'">'
+												+	'<div class="sell-img">'
+												+		'<img src="'+data[i].commodityCoverImg+'" alt="">'
+												+	'</div>'
+												+	'<div class="sell-inf">'
+												+		'<span class="sell-inf-span1">'+data[i].commodityName+'</span>';
+												if(!data[i].isSelling){
+													if(!data[i].gujia){
+														html+='<span class="gujia" style="margin-left:10px;">估价中...</span>';
+													}else if(data[i].gujia){
+														if(data[i].gujiaStatus){
+															if(data[i].gujiaStatus==="同意"){
+																html+='<a class="gujia" gujia_num="'+data[i].commodityID+'" style="margin-left:10px;">估价:'+data[i].gujia+'元(已同意)</a>';
+															}else if(data[i].gujiaStatus==="拒绝"){
+																html+='<a class="gujia" gujia_num="'+data[i].commodityID+'" style="margin-left:10px;">估价:'+data[i].gujia+'元(已拒绝)</a>';
+															}
+														}else{
+															html+='<a class="gujia" gujia_num="'+data[i].commodityID+'" style="margin-left:10px;">估价:'+data[i].gujia+'元(点击处理)</a>';
+														}
+													}
+												}
+												html+=		'<p class="imgs" style="text-align:left;">图片列表：';
+														if(data[i].userCommodityPic)
+															for(var j in data[i].userCommodityPic){
+																html+='<img style=\"max-height:23px;margin-right:10px;\"  src='+data[i].userCommodityPic[j]+' />';
+															}
+												
+												html+='</p>'
+												+		'<div class="sell-shangchuan">'
+												+			'<span class="uploadImg_btn" style="margin-left:10px;">上传照片</span>'
+												+			'<span class="video" style="margin-left:10px;">上传视频</span>';
+															
+												html+=		'<input type="file" class="uploadImg" accept="image/*" multiple="multiple"  >'
+												+		'</div>'
+												+	'</div>'
+												+'</div>';
+									}
+									html +="<p style='text-align:right;padding-right:10px;color:#8bc34e;padding-bottom:5px;maigin-bottom:5px;margin-left:0px;margin-right:0px; border-bottom:1px solid #8bc34e;'>预约时间:"+data[i].reservationTime+"</p>";
+									$(".pg-content").append(html);
+							},
+							error : function(err){
+								console.log(err);
+							}
+						});
+					}
+					freshClick();
+					listenFileUpload();
+				}
+			});
+			function freshClick(){
+				$(".uploadImg_btn").click(function(){
+					$(this).parent().find(".uploadImg").trigger("click");
+				});
+				$(".video").click(function(){
+					alert("由于微信限制，请到咕哩Grecycle服务号中上传发送视频，我们会为您添加视频到你的商品，敬请谅解！");
+				});
+				$(".gujia").unbind("click").click(function(ev){
+					if($(this).text().match("已")||$(this).text().match("中")){
+						return false;
+					}
+					var num = $(this).attr("gujia_num");
+					$("#confirm #container").attr("target",num);
+					$("#confirm").show();
+					$("[result='ok']").unbind("click").click(function(){
+						setGujia(num,"同意");
+						$("#confirm").hide();
+					})
+					$("[result='not_ok']").unbind("click").click(function(){
+						setGujia(num,"拒绝");
+						$("#confirm").hide();
+					})
+					$("[result='cancle']").unbind("click").click(function(){
+						$("#confirm").hide();
+					})
+				})
+			}
+			function setGujia(target,option){
+				collections.update({"userWxID" : wxID,"flag" : "sellInfo","commodityID":target},{"$set":{"gujiaStatus":option}},function(){
+					var old_text = $("[gujia_num='"+target+"']").text().trim().split("(点击处理)")[0];
+					if(option==="同意"){
+						old_text += "(已同意)";
+					}else{
+						old_text += "(已拒绝)";
+					}
+					$("[gujia_num='"+target+"']").text(old_text);
+
+					collections.findOne({"flag":"user","userWxID":wxID},function(err,data){
+							var username = data.userName;
+							var txt = "同意";
+							if(option==="拒绝"){
+								txt = "拒绝";
+							}
+							var sendData = {
+								"fromname":"咕哩商城官网网站",
+								"to":"cs@grecycle.com.cn",
+								"subject":"咕哩商品估价提醒",
+								"body":"用户名："+username+" "+txt+"了商品编号为："+target+"的估价."
+							}
+							shoots.post("http://sgmmedia.net/fruits/mail/smartsend?appid=xfruit",sendData);//cs@grecycle.com.cn
+						});
+				})
+			}
+			function listenFileUpload(){
+				$("input").unbind("change").change(function(ev){
+					loading();
+					if(ev.target.files.length>2){
+						alert("最多上传两张图片！");
+						hideLoad();
+					}else{
+						var files = ev.target.files, file;		
+					    if (files && files.length > 0) {
+					    	
+					    	var html = ""
+					    	var imgURL = "";
+					    	for(var i = 0 ; i < files.length ; i ++){
+					    		
+							      file = files[i];
+							      if(file.size > 1024 * 1024 * 2) {
+							        alert('图片大小不能超过 2MB!');
+							        return false;
+							      }
+							      
+							     imgURL = uploadImg(file);
+							      html += "<img style=\"max-height:23px;margin-right:10px;\"  src='"+imgURL+"' />";
+					    	}
+					    		  html += "";
+							  	 $(this).parent().parent().find(".imgs").html("图片列表："+html);
+							  	 saveIImgList($(this).parent().parent().find(".imgs"));
+					    }
+						
+					}
+				});
+				
+			}
+
+			function uploadImg(file){
+				
+				var returnData = null;
+				var form = new FormData();
+				form.append( 'file', file );
+			    $.ajax({
+			        url: 'serv/upload/upload',
+			        data: form,
+			        processData: false,
+			        contentType :false,
+//					dataType: 'json',
+			        type: 'POST',
+			        async:false,
+			        success: function (data) {
+			            returnData = data.url;
+
+			        },
+			        error:function(err){
+			        	console.log(err);
+			        	returnData = null;
+			        }
+			    });
+			    return returnData;
+			}
+			function saveIImgList(parentDOM){
+				var target ={
+					"flag":"sellInfo",
+					"userWxID":wxID,
+					"commodityID":$(parentDOM).parent().parent()[0].className.trim().split(" ")[1]
+				}
+				var saveList = [];
+				setTimeout(function(){
+					$(parentDOM).children("img").each(function(index,ele){
+						saveList.push($(ele).attr("src"));
+					});
+					target.userCommodityPic = saveList;
+					collections.update({"flag":"sellInfo","userWxID":wxID,"commodityID":target.commodityID},{$set:target},{upsert:false},function(){
+						hideLoad();
+						alert("上传成功");
+						collections.findOne({"flag":"user","userWxID":wxID},function(err,data){
+							var username = data.userName;
+							var sendData = {
+								"fromname":"咕哩商城官网网站",
+								"to":"cs@grecycle.com.cn",
+								"subject":"咕哩用户图片上传提醒",
+								"body":"用户名："+username+"上传了新商品照片,商品编号："+target.commodityID+"."
+							}
+							shoots.post("http://sgmmedia.net/fruits/mail/smartsend?appid=xfruit",sendData);
+						});
+							
+					});
+				},1000);
+			}
+			
+			function clone(obj){  //克隆对象
+				    var o;  
+				    if(typeof obj == "object"){  
+				        if(obj === null){  
+				            o = null;  
+				        }
+				        else{
+				            if(obj instanceof Array){  
+				                o = [];  
+				                for(var i = 0, len = obj.length; i < len; i++){  
+				                    o.push(clone(obj[i]));  
+				                }  
+				            }else{  
+				                o = {};  
+				                for(var k in obj){  
+				                    o[k] = clone(obj[k]);  
+				                }  
+				            }  
+				        }  
+				    }
+					    else{
+					        o = obj;  
+					    } 	 
+				    return o;  
+			}
+			function getBase64Image(img) {
+			      var canvas = document.createElement("canvas");
+			      canvas.width = img.naturalWidth;
+			      canvas.height = img.naturalHeight;
+			      var ctx = canvas.getContext("2d");
+			      ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+			      var dataURL = canvas.toDataURL("image/png");
+			      return dataURL ;
+			      
+			}
+			
+		});
+	</script>
+</html>

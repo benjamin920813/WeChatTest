@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>购物车</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css" >
+		body{
+			overflow-x: hidden;
+			background-color: #ebebeb;
+		}
+		.shoppCart-title{
+			background-image: url(img/shop-row.png);
+			background-repeat: no-repeat;
+			background-position-x:90%;
+			background-position-y:50%;  
+			background-size: 12px;
+		}
+		.shoppCart-title p{
+			font-size: 16px;
+			margin: 0px;
+			margin-top: 7px;
+			text-align: left;
+			padding-left: 25px;
+		}
+		.noone{
+
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="shoppCart-title">
+		<span class="table-cell noone" style="vertical-align: middle;display: table-cell;">查看您的收货地址</span>
+		<p class="haveone username">姓名：</p>
+		<p class="haveone userphone">手机号：</p>
+		<p class="haveone useraddr">详细地址：</p>
+	</div>
+	<div class="pg-content cart-margin">
+		<p id="nogoods" style="text-align: center; display: none;">来了总得买点东西吧！<a style="text-decoration: none;" href="gujiMall.html">进入商城首页</a></p>
+		<!--<div class="cart-list">
+			<div class="cart-img">
+				<img src="img/type.jpg" alt="">
+			</div>
+			<div class="cart-band-name">
+				<div class="table-cell">
+					<span >??????</span>
+					<div class="cart-goods-num">
+						<div class="jian-img"></div>
+						<div class="add-jian-num">
+							<input type="text" name="" class="add-jian-input" value="">
+						</div>
+						<div class="add-img"></div>
+					</div>
+				</div>
+			</div>
+			<div class="cart-band-price">
+				<span class="table-cell">￥??</span>
+			</div>
+		</div>-->
+
+		
+
+		<div class="cart-pay">
+			<div class="cart-sumPay">
+				<span class="table-cell payNum">￥??</span>
+			</div>
+			<div class="cart-pay-bt">
+				<span class="table-cell">完成</span>
+			</div>
+		</div>
+	</div>
+
+	<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+	<script src="http://dev.api.zpage.me/sdk.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/wxid.js"></script>
+	<script>
+		var search = window.location.search.replace(/\?/, '');
+		var parameters_str = search.split(/&/);
+		var parameters = {};
+		for (var i in parameters_str) {
+			var kv = parameters_str[i].split(/=/);
+			parameters[kv[0]] = kv[1];
+		}
+		$(document).ready(function(){
+			var collections = shoots.collection("guji");
+			var search = {};
+			if(!parameters["addressTime"]){
+				search = {
+					"flag" : "user",
+					"userWxID":wxID,
+				}
+				
+			}else{
+				search = {
+					"flag" : "receiveAddrs",
+					"userWxID":wxID,
+					"timestamp":parameters["addressTime"]
+				}
+			}
+				collections.findOne(search,function(err,data){
+					if(data!==undefined&&data!==null){
+						if(data.userPhone!==undefined){
+							$(".shoppCart-title .username").text("姓名："+data.userName);
+							$(".shoppCart-title .userphone").text("手机号码："+data.userPhone);
+							$(".shoppCart-title .useraddr").text("收货地址："+data.userAddress);
+							$(".haveone").show();
+							$(".noone").hide();
+						}else{
+							$(".noone").show();
+							$(".haveone").hide();
+						}
+							
+					}else{
+						$(".noone").show();
+						$(".haveone").hide();
+					}
+				});
+			var price = 0 ;
+			var price_now = 0 ;
+			var last = 0 ; 
+			var shoppingCartDetail = $.cookie("shoppingcart");
+			if(shoppingCartDetail==="undefined"||shoppingCartDetail===undefined){
+				$("#nogoods").show();
+				$(".cart-pay").hide();
+			}else{
+					if(shoppingCartDetail.split(",")[0].split("$")[0]==wxID){
+						var commodity =[];
+						for(var i in shoppingCartDetail.split(",")){
+							
+							commodity.push ( {
+								commodityID : shoppingCartDetail.split(",")[i].split("$")[1],
+								count : shoppingCartDetail.split(",")[i].split("$")[2]
+							});
+						}
+						var html = "";
+						for(var i = 0 ; i < commodity.length ; i ++)
+							$.ajax({
+								type:"post",
+								url:"serv/dbsearch/search",
+								async:false,
+								data :{"commodityID":commodity[i].commodityID,"flag":"sellInfo"},
+								success : function(data){
+									if(data.length>0){
+											html +=""
+										+	'<div class="cart-list" id="'+data[0].commodityID+'">'
+										+		'<div class="cart-img">'
+										+			'<img src="'+data[0].commodityCoverImg+'" alt="">'
+										+		'</div>'
+										+		'<div class="cart-band-name">'
+										+			'<div class="table-cell">'
+										+				'<span>'+data[0].commodityName+'</span>'
+										+				'<div class="cart-goods-num">'
+										+					'<div class="jian-img"></div>'
+										+					'<div class="add-jian-num">'
+										+						'<input type="number" name="" class="add-jian-input" left="'+data[0].commodityNum+'" value="'+commodity[i].count+'">'
+										+					'</div>'
+										+					'<div class="add-img"></div>'
+										+				'</div>'
+										+			'</div>'
+										+		'</div>'
+										+		'<div class="cart-band-price">'
+										+			'<span class="table-cell">￥'+data[0].sellingPrice+'</span>'
+										+		'</div>'
+										+	'</div>';
+					         		}
+								},
+								error:function(err){
+									console.log(err);
+								}
+							});
+							$(".pg-content.cart-margin").prepend(html);
+			       	   		$(".payNum").text("￥"+getPriceNow());
+							freshBtn();
+					}
+			}
+				
+			function freshBtn(){
+				
+				$(".add-img").click(function(){
+	       	   		var val_now = Number($(this).parent().find(".add-jian-input").val());
+	       	   		val_now++;
+	       	   		if(val_now<=Number($(this).parent().find(".add-jian-input").attr("left"))){
+	       	   			$(this).parent().find(".add-jian-input").val(val_now);
+	       	   			price_now = getPriceNow();
+	       	   			$(".payNum").text("￥"+price_now);
+	       	   		}else{
+	   	   				
+	   	   			}
+	           });
+	           $(".jian-img").click(function(){
+	       	   		var val_now = Number($(this).parent().find(".add-jian-input").val());
+	       	   		val_now--;
+	       	   		if(val_now>=0){
+	       	   			$(this).parent().find(".add-jian-input").val(val_now);
+	       	   			price_now = getPriceNow();
+	       	   			$(".payNum").text("￥"+price_now);
+	       	   		}else{
+	   	   				
+	   	   			}
+	           });
+			}
+			function getPriceNow(){
+				var returnPrice = 0;
+				$(".cart-list").each(function(index,ele){
+					returnPrice += Number($(ele).find(".add-jian-input").val())*Number($(ele).find(".cart-band-price span").text().trim().split("￥")[1]);
+				});
+				return returnPrice;
+			}
+			function getNowFormatDate(){
+			    var CurrentDate = "";
+			    var date = new Date();
+				CurrentDate+= date.getUTCFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+			    return CurrentDate;
+			}
+			function updateCommodityNum(list){
+				// alert(typeof list);
+				var searchArray = [];
+				var setProv = [];
+				
+				
+				for(var i in list){
+					searchArray.push({
+						"flag" : "sellInfo",
+						"commodityID":list[i].buyCommodityID
+					});
+					setProv.push({
+						"commodityID":list[i].buyCommodityID,
+						"minus" : list[i].buyCommodityNum
+					});
+				}
+				collections.find({$or:searchArray},function(err,data){
+					if(data.length>0){
+						var setArray = [];
+						for(var i in data){
+							var restNum = Number(data[i].commodityNum);
+							for(var j in setProv){
+								if(data[i].commodityID==setProv[j].commodityID){
+									restNum -= Number(setProv[j].minus);
+								}
+							}
+							setArray.push({
+								"flag":"sellInfo",
+								"commodityID" : data[i].commodityID,
+								"commodityNum" : restNum
+							});
+							$.ajax({
+							type:"post",
+							url:"serv/dbsearch/update",
+							async:false,
+							data:{
+								"flag":"sellInfo",
+								"commodityID" : data[i].commodityID,
+								"commodityNum" : restNum
+							},
+							success:function(msg){
+							}
+						});
+							
+						}
+					}
+				});
+			}
+			
+			$(".cart-pay-bt").click(function(){
+
+				collections.findOne({"flag":"user","userWxID":wxID},function(err,data){
+
+					if(data!==undefined&&data!==null){
+						var save_data = {
+							userWxID : wxID,
+							flag : "buyInfo",
+							orderNum : String(Date.now())+String(Math.floor(Math.random()*9))+String(Math.floor(Math.random()*9))+String(Math.floor(Math.random()*9))+String(Math.floor(Math.random()*9)),
+							buyCommodityIDList : [
+							],
+							"totalCost" : Number($(".payNum").text().trim().split("￥")[1]),
+							buyTime : getNowFormatDate()
+						};
+						var tem = {};
+					   	$(".cart-list").each(function(index,ele){
+					   		tem.buyCommodityID  = $(ele).attr("id").trim();
+					   		tem.buyCommodityNum  = Number($(ele).find(".add-jian-input").val().trim());
+							save_data.buyCommodityIDList.push(tem);
+							tem = {};
+						});
+						
+						updateCommodityNum(save_data.buyCommodityIDList);
+					   	$.cookie("shoppingcart","undefined");
+					   	if(parameters["addressTime"]){
+					   		save_data.otherAddr = parameters["addressTime"];
+					   	}
+						collections.insert(save_data,function(){
+							alert("下单成功，等待送货!");
+							$.cookie("shoppingcart","undefined");
+							window.location.href = "buy.html";
+						});
+					}else{
+						alert("请先填写收货地址!");
+						window.location.href = "receiptInf.html?cratOruser=cart&flag=defaultAddr";
+					}
+				});
+						
+			});
+			$(".shoppCart-title").on('click',function(){
+				collections.findOne({"flag":"user","userWxID":wxID},function(err,data){
+					if(data){
+						if(!data.userPhone||!data.userAddress){
+							window.location.href = "receiptInf.html?cratOruser=cart&flag=defaultAddr";
+						}else{
+							var html = "";
+							if(parameters["addressTime"]){
+								html = 'receiptInf.html?cratOruser=cart&flag=receiveAddr&addressTime='+parameters["addressTime"];
+							}
+							else{
+								html = 'receiptInf.html?cratOruser=cart&flag=receiveAddr';
+							}
+							window.location.href =html;
+						}
+					}else{
+						window.location.href = "receiptInf.html?cratOruser=cart&flag=defaultAddr";
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>

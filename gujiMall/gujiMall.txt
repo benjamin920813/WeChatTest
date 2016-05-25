@@ -1,0 +1,21 @@
+ssh root@120.26.212.77
+Grecycle2015
+
+
+appid   wxb2ea67947cf3b9ea
+apps    7eb426bd7c7db6e0e6767d20426083cb
+
+cd /opt/guli/gujiMall && svn up
+
+docker restart 94ba2d89be36
+docker ps
+docker exec 94ba2d89be36 bash
+
+
+docker start 94ba2d89be36
+docker attach 94ba2d89be36
+
+
+gong 121.40.79.232
+nei 10.171.203.174
+Woshimaning1993

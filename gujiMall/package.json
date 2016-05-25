@@ -1,0 +1,33 @@
+{
+  "name": "gujiMall",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "koa": "*",
+    "fs": "*",
+    "path": "*",
+    "koa-router": "*",
+    "koa-mount": "*",
+    "phpjs": "*",
+    "sha1": "*",
+    "koa-bodyparser": "*",
+    "jwt-simple": "*",
+    "koa-send": "*",
+    "co-request": "*",
+    "co": "*",
+    "cron": "*",
+    "co-ejs": "*",
+    "koa-validate": "*",
+    "shoots-toolkit": "*",
+    "shoots-mongo": "*",
+    "shoots-queue": "*",
+    "co-mongo": "*",
+    "co-busboy": "*",
+    "thunkify": "*",
+    "co-wechat": "*",
+    "wechat-api": "*"
+  }
+}

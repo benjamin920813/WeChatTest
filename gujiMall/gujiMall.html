@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>咕哩商城</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css" >
+		body{
+			overflow-x: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div class="pg-content">
+		<div class="p3-img-content">
+			<img src="img/mall.jpg" >
+		</div>
+		<!-- <div class="cut-off-rule"></div> -->
+
+		<div class="p3-img-content">
+			<img src="img/mall-1.png" >
+		</div>
+		<!-- <div class="cut-off-rule"></div> -->
+
+		<div class="p3-img-content">
+			<img src="img/mall-2.jpg" >
+		</div>
+		<div class="p3-bottom-1 p3-margin">
+			<div class="p3-button1">
+				<span class="p3-span"></span>
+			</div>
+			<div class="p3-button2">
+				<span class="p3-span"></span>
+			</div>
+		</div>
+		<div class="p3-bottom-1">
+			<div class="p3-button3">
+				<span class="p3-span"></span>
+			</div>
+			<div class="p3-button4">
+				<span class="p3-span"></span>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+	<script src="http://dev.api.zpage.me/sdk.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<!-- // <script src="js/wxid.js"></script> -->
+	<script>
+		$(document).ready(function(){
+			
+			$(".p3-button1").on('click',function(){
+				//类型分类
+				window.location.href ='typeClassification.html';
+			});
+			$(".p3-button2").on('click',function(){
+				//品牌分类
+				window.location.href ='brandClassification.html?type=brand';
+			});
+			$(".p3-button3").on('click',function(){
+				//全新商品
+				window.location.href ='brandClassification.html?type=newProduct';
+			});
+			$(".p3-button4").on('click',function(){
+				//最新上架
+				window.location.href ='latestShelves.html';
+			});
+		});
+	</script>
+
+</body>
+</html>

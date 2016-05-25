@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!--品牌分类  全新分类-->
+	<title>品牌</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css" >
+		body{
+			overflow-x: hidden;
+			background-color: #ebebeb;
+		}
+	</style>
+</head>
+<body>
+	<div class="p5-menue">
+		<div class="p5_menue_ p5-position-1">
+			<span class="table-cell">价格</span>
+		</div>
+		<div class="p5_menue_ p5-position-2">
+			<span class="table-cell">最新</span>
+		</div>
+		<div class="p5_menue_ p5-position-3">
+			<span class="table-cell">推荐</span>
+		</div>
+	</div>
+	<div class="p5-search">
+		<input class="p5-input" type="search" placeholder="搜索">
+	</div>
+
+	<div class="child-menue" style="display:none ">
+		<div class="triangle"></div>
+		<div class="child-menue_">
+			<span class="lowToUp">从低到高</span>
+			<span class="upToLow">从高到低</span>
+		</div>
+	</div>
+	 <div class="pg-content p5-margin">
+		<div class="p4-img-content">
+			
+		</div>
+	</div> 
+
+	<div class="letter-search" style="display: none">
+		<img src="img/letter-search.png" alt="">
+		<span>A</span>
+		<span>B</span>
+		<span>C</span>
+		<span>D</span>
+		<span>E</span>
+		<span>F</span>
+		<span>G</span>
+		<span>H</span>
+		<span>I</span>
+		<span>J</span>
+		<span>K</span>
+		<span>L</span>
+		<span>M</span>
+		<span>N</span>
+		<span>O</span>
+		<span>P</span>
+		<span>Q</span>
+		<span>R</span>
+		<span>S</span>
+		<span>T</span>
+		<span>U</span>
+		<span>V</span>
+		<span>W</span>
+		<span>X</span>
+		<span>Y</span>
+		<span>Z</span>
+	</div>
+	<div class="p4-email">
+		<a href="javascript:alert('邮箱：cs@grecycle.com.cn')"><img src="img/e-mail.png" class="p4_email_img" alt=""></a>
+	</div>
+	<div class="p4-tel" style="">
+		<a href="tel:15026808450" ><img src="img/phone.png" class="p4_email_img" alt=""></a>
+	</div>
+	<div class="" style="position: fixed;left: 2%;bottom: 17%;">
+		<a href="shoppingCart.html"><img src="img/shoppingCart.png" class="p4_email_img" alt=""></a>
+	</div>
+	<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+	<script src="http://dev.api.zpage.me/sdk.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/wxid.js"></script>
+	<script>
+		var search = window.location.search.replace(/\?/, '');
+		var parameters_str = search.split(/&/);
+		var parameters = {};
+		for (var i in parameters_str) {
+			var kv = parameters_str[i].split(/=/);
+			parameters[kv[0]] = kv[1];
+		}
+		htmlType =parameters['type'];
+
+
+        $(document).ready(function(){
+        	var collections = shoots.collection("guji");
+        	init();
+        	function init(){
+	        	collections.find({"flag":"sellInfo","isSelling":true,'commodityNewLeave':'全新'}
+	        		,{},{"lastModify":-1},function(err,data){
+					setData(data);
+				});
+        	}
+        	function setData(data){
+				var position_type = "";
+				var html = "" ;
+				for(var i=0;i<data.length;i++){
+					if(i%2===0){
+						 position_type = "p4-img-left";
+					}else{
+						position_type = "p4-img-right";
+					}
+					 html += '<div class="'+position_type+'" id="'+data[i].commodityID+'">'
+						+	  '<img src="'+data[i].commodityCoverImg+'" alt=""/>'
+						+	  '<div class="p4-img-text">'
+					    +	      '<span class="p4-img-name">'+data[i].commodityBrand+''+'</span>'
+						+	      '<span class="p4-img-price">￥'+data[i].sellingPrice+'</span>'
+						+	      '<span class="p4-img-price_">￥'+data[i].primeCost+'</span>'
+						+	  '</div>'
+						+	'</div>';
+				}
+				$(".p4-img-content").html(html);
+				freshClick();
+        	}
+			function freshClick(){
+				$(".p4-img-left,.p4-img-right").unbind("click").click(function(){
+					window.location.href = "goodsDetails.html?commodityID="+$(this).attr("id");
+				});
+			}
+			function searchByPrice(flag){
+				collections.find({"flag":"sellInfo","isSelling":true },{},{"sellingPrice":flag},function(err,data){
+					setData(data);
+				});
+			}
+			function searchByLetter(letter){
+				collections.find({"flag":"sellInfo","isSelling":true ,"commodityBrand":{$regex:letter,$options:"$i"}},function(err,data){
+					var arrayNew = [];
+					for(var i in data){
+						if(data[i].commodityBrand[0]==letter.toLowerCase()||data[i].commodityBrand[0]==letter){
+							arrayNew.push(data[i]);
+						}
+					}
+					setData(arrayNew);
+				});
+			}
+        	brandMenue();
+        	function brandMenue(){
+        		if(htmlType ==='newProduct'){
+        			$('title').text('全新');
+        			$(".letter-search").hide();
+        		}else{
+        			$('title').text('品牌');
+        			$(".letter-search").show();
+        		}
+
+	        	$(".p5_menue_").on('click',function(){
+	        		if($(this).hasClass('p5-position-1')){
+	        			
+	        			$(".child-menue").toggle();
+	        		}
+	        	});
+
+	        	$(".letter-search span").on('click',function(){
+	        		$(".letter-search span").removeClass('letter-chose');
+	        		$(this).addClass('letter-chose');
+	        		searchByLetter($(this).text().trim());
+	        	});
+	        	$(".lowToUp,.upToLow").click(function(){
+	        		if($(this).hasClass("lowToUp")){
+	        			searchByPrice(1);
+	        		}else{
+	        			searchByPrice(-1);
+	        		}
+	        		$(this).parent().parent().hide();
+	        	});
+	        	$(".p5_menue_.p5-position-2").click(function(){
+	        		collections.find({"flag":"sellInfo","isSelling":true },{},{"lastModify":-1},function(err,data){
+						setData(data);
+					});
+	        	});
+	        	$(".p5_menue_.p5-position-3").click(function(){
+	        		collections.find({"flag":"sellInfo",commodityTag:{$regex:"推荐"} ,"isSelling":true},{},{"lastModify":-1},function(err,data){
+						setData(data);
+					});
+	        	});
+
+	        	$(".p5-input").on('keyup',function(ev){
+	        		if($(".p5-input").val()!=''){
+	        			$(".p5-input").css({'background':'url()','background-size': '15px 15px',
+										    'background-repeat': 'no-repeat', 'background-position-x': '37%',
+										    'background-position-y': '7px','background-color': 'white'});
+	        		}else{
+	        			$(".p5-input").css({'background':'url(img/word-serach.png)','background-size': '15px 15px',
+										    'background-repeat': 'no-repeat', 'background-position-x': '37%',
+										    'background-position-y': '7px','background-color': 'white'});
+	        		}
+	        		var letter = $(this).val().trim();
+	        		collections.find({"flag":"sellInfo","isSelling":true ,"commodityBrand":{$regex:$(this).val().trim(),$options:"$i"}},function(err,data){
+	        			
+						setData(data);
+	        		});
+	        	});
+
+	        	$(".pg-content").on('click',function(){
+					$(".p5_menue_").removeClass('p4_menue_click');
+		    		$(".child-menue").hide();
+				});
+        	}
+        });
+	</script>
+</body>
+</html>

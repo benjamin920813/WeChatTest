@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>最新上架</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css" >
+		body{
+			overflow-x: hidden;
+			background-color: #ebebeb;
+		}
+	</style>
+</head>
+<body>
+	<div class="latestSh-title">
+		<span class="table-cell">按时间排序</span>
+	</div>
+	<div class="pg-content">
+		<div class="latestSh-img-content">
+		</div>
+	</div>
+	<div class="p4-email">
+		<a href="javascript:alert('邮箱：cs@grecycle.com.cn')"><img src="img/e-mail.png" class="p4_email_img" alt=""></a>
+	</div>
+	<div class="p4-tel" style="">
+		<a href="tel:15026808450"><img src="img/phone.png" class="p4_email_img" alt=""></a>
+	</div>
+	<div class="" style="position: fixed;left: 2%;bottom: 17%;">
+		<a href="shoppingCart.html"><img src="img/shoppingCart.png" class="p4_email_img" alt=""></a>
+	</div>
+</body>
+<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+<script src="http://dev.api.zpage.me/sdk.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/wxid.js"></script>
+<script>
+	var html = "";
+	var collections = shoots.collection("guji");
+	collections.find({"flag":"sellInfo","isSelling":true },{},{"lastModify":-1},0,20,function(err,data){
+		var position_type = "";
+		for(var i=0;i<data.length;i++){
+			if(i%2===0){
+				 position_type = "latestSh-img-left";
+			}else{
+				position_type = "latestSh-img-right";
+			}
+				 html += '<div class="'+position_type+'" id="'+data[i].commodityID+'">'
+					+	'<img src="'+data[i].commodityCoverImg+'" alt=""/>'
+					+	'<div class="p4-img-text">'
+				    +	'<span class="p4-img-name">'+data[i].commodityName+'</span>'
+					+	'<span class="p4-img-price">￥'+data[i].sellingPrice+'</span>'
+					+	'<span class="p4-img-price_">￥'+data[i].primeCost+'</span>'
+					+	'</div>'
+					+	'</div>';
+			}
+		$(".latestSh-img-content").append(html);
+		freshClick();
+	});
+	function freshClick(){
+		$(".latestSh-img-left,.latestSh-img-right").unbind("click").click(function(){
+			window.location.href = "goodsDetails.html?commodityID="+$(this).attr("id");
+		});
+	}
+</script>
+</html>

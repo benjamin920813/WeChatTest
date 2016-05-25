@@ -1,0 +1,98 @@
+<html>
+<head>
+</head>
+<body>
+<h1></h1>
+<button></button>
+</body>
+<script src="http://dev.api.zpage.me/sdk.js"></script>
+<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<!-- <script src="js/wxid.js"></script> -->
+<script type="text/javascript">
+
+
+	
+	// $.post("serv/dbsearch/search",{"flag":"user"},function(data){
+	// 	console.log(data);
+	// 	$("h1").text( data);
+	// })
+	// $.ajax({
+	// 	type:"get",
+	// 	url:"serv/dbsearch/test",
+	// 	async:false,
+	// 	success:function(data){
+	// 		// wxID = data.wxID;
+	// 		// face = data.face;
+
+	// 	}
+	// });
+	// $.ajax({
+	// 	type:"post",
+	// 	url:"serv/dbsearch/search",
+	// 	data:{"flag":"wxUserInfo","openid":"o-ClBwiiJps869vleZ7BAWOoqbd8"},
+	// 	async:false,
+	// 	success:function(data){
+	// 		console.log(data);
+	// 		// if(data.length<=0){
+	// 		// 	var returnUrl = window.location.pathname.trim().split("/")[window.location.pathname.split("/").length-1].split(".")[0];
+	// 		// 	window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appID+"&redirect_uri=http%3a%2f%2f211.office.zpage.me%2fserv%2fwechat%2fwxcode&response_type=code&scope=snsapi_userinfo&state="+returnUrl+"#wechat_redirect"
+	// 		// }
+	// 	}
+	// });
+
+	// $.cookie("userwxInfo","undefined,undefined");
+	
+	$.ajax({
+		type:"post",
+		url:"serv/dbsearch/search",
+		data:{"flag":"userReturnInf"},
+		async:false,
+		success:function(data){
+			console.log(data);
+			// if(data.length<=0){
+			// 	var returnUrl = window.location.pathname.trim().split("/")[window.location.pathname.split("/").length-1].split(".")[0];
+			// 	window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appID+"&redirect_uri=http%3a%2f%2f211.office.zpage.me%2fserv%2fwechat%2fwxcode&response_type=code&scope=snsapi_userinfo&state="+returnUrl+"#wechat_redirect"
+			// }
+		}
+	});
+	
+	// var collections = shoots.collection("guji");
+	// // // collections.update({"flag":'user'},{$set:{"userPhone":"123"}},{multi:true},function(){
+	// 	collections.find({"flag":"buyInfo"},function(err,data){
+	// 		console.log(data);
+	// 	});
+	// // });
+	// collections.remove({});
+	// collections.remove({"flag":"reservationInf_"});
+	// collections.remove({"flag":"wxUserInfo"});
+	// collections.remove({"flag":"user"});
+	// collections.remove({"flag":"sellInfo"});
+	// collections.remove({"flag":"buyInfo"});
+	// collections.remove({"flag":"distributionInf_"});
+	// collections.remove({"flag":"userReturnInf"});
+	// collections.remove({"flag":"wxToken"});
+	// collections.remove({"flag":"reservationInf_"});//,{"flag":"userReturnInf"},{"flag":"distributionInf_"},{"flag":"buyInfo"},{"flag":"sellInfo"},{"flag":"reservationInf_"}]});
+	// 		collections.findOne({"flag":"user","userWxID":wxID},function(err,data){
+	// 			$("h1").text( data.flag);
+	// 		});
+	// window.onload = function(){                                                            
+	// 	try{
+	// 		var search = window.location.search.replace(/\?/, '');
+
+	// 			var parameters_str = search.split(/&/);
+	// 			var parameters = {};
+	// 			for (var i in parameters_str) {
+	// 				var kv = parameters_str[i].split(/=/);
+	// 				parameters[kv[0]] = kv[1];
+	// 			}
+
+	// 		var openid= parameters['uid'];
+	// 	}catch(e){console.log(e);}
+	// }
+	$("button").click ( function(){
+		window.location.reload();
+		window.close();
+	});
+</script>
+</html>

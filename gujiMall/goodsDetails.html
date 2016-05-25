@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!--商品详情-->
+	<title>详情</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<style type="text/css" >
+		body{
+			overflow-x: hidden;
+			background-color: #ebebeb;
+		}
+	</style>
+</head>
+<body>
+	<div class="p6-img-content">
+		<div class="left-right-img">
+			<div class="goodsDetil-left-img">
+				<!-- <img src="img/detail-left.png" class="old-img" alt=""> -->
+			</div>
+			<div class="goodsDetil-right-img">
+				<!-- <img src="img/detail-right.png" class="old-img" alt=""> -->
+			</div>
+
+			<div class="bottom-round">
+			</div>
+		</div>
+		<div class="goodsDetil-img-list">
+            <!-- <div class="imgview" style="background-image: url(http://127.0.0.1:5000/img/page1.gif)"></div> -->
+            <div id="myCarousel" class="carousel slide">
+               <!-- 轮播（Carousel）指标 -->
+               <!-- <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+               </ol>    -->
+               <!-- 轮播（Carousel）项目 -->
+               <div class="carousel-inner">
+                  <!-- <div class="item active">
+                     <img src="img/page1.gif" alt="First slide">
+                  </div>
+                  <div class="item">
+                     <img src="img/page2.gif" alt="First slide">
+                  </div>
+                  <div class="item">
+                     <img src="img/page3.gif" alt="First slide">
+                  </div>
+                  <div class="item ">
+                     <img src="img/page1.gif" alt="First slide">
+                  </div>
+                  <div class="item">
+                     <img src="img/page2.gif" alt="First slide">
+                  </div>
+                  <div class="item">
+                     <img src="img/page3.gif" alt="First slide">
+                  </div> -->
+               </div>
+            </div> 
+		</div>
+	</div>
+
+	<div class="cut-off-rule p6-cut-color"></div>
+	<div class="p6-img-text">
+		<span class="p6-img-name">比巴布围兜</span>
+		<span class="p6-img-price">￥30</span>
+		<span class="p6-img-price_">￥60</span>
+		<div class="p6-buy-num">
+			<div class="jian-img"></div>
+			<div class="add-jian-num">
+				<input type="text" name="" class="add-jian-input" value="">
+			</div>
+			<div class="add-img"></div>
+			<span class="p6-kucun"><label>有货</label><span style="display:none;">7</span></span>
+		</div>
+	</div>
+	<div class="p6-product-inf">
+		<div class="p6-prc-inf">
+			<span class="p6-prc-span">产品信息</span>
+			<span class="p6-prc-content">就是这样就是这样就是这样就是这样就是这样就是这样就是这样就是这样就是这样就是这样就是这样就是这样</span>
+		</div>
+		<div class="cut-off-rule p6-cut-color_2"></div>
+		<div class="p6-old-owner">
+			<span class="p6-prc-span">原主信息</span>
+			<span class="p6-prc-content">就是这样就是这样就是这样就是这样就是这样就是这样就是这样就是这样就是这样就是这样就是这样就是这样</span>
+		</div>
+	</div>
+
+	<div class="p6-video">
+		<video id="video" src="" ></video>
+	</div>
+	<div class="p6-oldImgText">
+		<span>原主上传</span>
+		<p style="position: relative;width: 100%;text-align: center;" class="userUploadImg">
+			无
+		</p>
+	</div>
+	<div class="p6-detail">
+		<img src="img/detail-1.png" alt="">
+		<img src="img/detail-2.png" class="p6-detail-position2" alt="">
+		<img src="img/detail-3.png" class="p6-detail-position3" alt="">
+	</div>
+	<div class="p6-submit">
+		<span class="table-cell">加入购物车</span>
+	</div>
+  <div class="p4-email">
+    <a href="javascript:alert('邮箱：cs@grecycle.com.cn')"><img src="img/e-mail.png" class="p4_email_img" alt=""></a>
+  </div>
+  <div class="p4-tel" style="">
+    <a href="tel:15026808450" ><img src="img/phone.png" class="p4_email_img" alt=""></a>
+  </div>
+  <div class="" style="position: fixed;left: 2%;bottom: 17%;">
+    <a href="shoppingCart.html"><img src="img/shoppingCart.png" class="p4_email_img" alt=""></a>
+  </div>
+    <script src="http://dev.api.zpage.me/sdk.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="js/wxid.js"></script>
+	<script>
+		try{
+			var search = window.location.search.replace(/\?/, '');
+		
+				var parameters_str = search.split(/&/);
+				var parameters = {};
+				for (var i in parameters_str) {
+					var kv = parameters_str[i].split(/=/);
+					parameters[kv[0]] = kv[1];
+				}
+				var commodityID = parameters["commodityID"];
+		}catch(e){console.log(e);}
+		
+        var w_ =$(".p6-img-content").width();
+        // var h_ =w_*1.0/1.777;
+        var h_ =w_;
+
+        $("#myCarousel").carousel('pause');
+        $(".p6-img-content").height(h_);
+        $(document).ready(function(){
+            var collections = shoots.collection("guji");
+            collections.find({"commodityID":commodityID},function(err,data){
+             	if(data.length>0){
+             		var img_list = "";
+                    // var ul ="";
+             		if(data[0].businessCommodityPic){
+                 		for(var i = data[0].businessCommodityPic.length-1 ; i >=0 ; i--){
+                 			if(i===0){
+                                img_list +='<div class="item active">'+
+                                             '<img src='+data[0].businessCommodityPic[i]+' alt="First slide">'+
+                                          '</div>';
+                 			}else{
+                                img_list +='<div class="item">'+
+                                             '<img src='+data[0].businessCommodityPic[i]+' alt="First slide">'+
+                                          '</div>';
+
+                 			}
+                 		}
+                    }
+                 	var html = "";
+             		if(data[0].userCommodityPic){
+             			for(var j = 0 ; j < data[0].userCommodityPic.length ; j++){
+             				html += '<img style="max-width:100%;" src="'+data[0].userCommodityPic[j]+'"/>'
+             			}
+             			$(".userUploadImg").html(html);
+
+                        var imgs = [];
+
+                        $(".userUploadImg img").click(function(){
+                          wx.previewImage({
+                              current: $(this).attr("src"), // 当前显示图片的http链接
+                              urls: [$(this).attr("src")] // 需要预览的图片http链接列表
+                          });
+                        });
+                    }
+         			$(".p6-img-name").text(data[0].commodityName);
+         			$(".p6-img-price").text("￥"+data[0].sellingPrice);
+         			$(".p6-img-price_").text("￥"+data[0].primeCost);
+         			$(".p6-prc-inf .p6-prc-content").text(data[0].commodityDisc);
+         			$(".p6-old-owner .p6-prc-content").text(data[0].originalOwnerInf);
+         			$(".add-jian-input").val("0");
+         			$(".p6-kucun span").text(data[0].commodityNum);
+                    if(data[0].commodityNum<=0){
+                        $(".p6-kucun label").text("售罄");
+                    }
+         			// $(".goodsDetil-img-list").html(img_list);
+
+                    // $(".carousel-indicators").html(ul);
+                    $(".carousel-inner").html(img_list);
+                    $(".goodsDetil-img-list .carousel-inner .item").click(function(){
+                        wx.previewImage({
+                            current: $($(this).children()[0]).attr('src'), // 当前显示图片的http链接
+                            urls: data[0].businessCommodityPic // 需要预览的图片http链接列表
+                        });
+                    });
+         			$("#video").attr("src",data[0].businessCommodityVideo);
+         			goodsDetilInit();
+         		}else{
+         			history.back();
+         			alert("商品不存在!");
+         		}
+            });
+            $(".add-img").click(function(){
+       	   		var val_now = Number($(".add-jian-input").val());
+       	   		val_now++;
+       	   		if(val_now<=Number($(".p6-kucun span").text())){
+       	   			$(".add-jian-input").val(val_now);
+                }else{
+    	   				
+    	   		}
+            });
+            $(".jian-img").click(function(){
+       	   		var val_now = Number($(".add-jian-input").val());
+       	   		val_now--;
+       	   		if(val_now>=0){
+       	   			$(".add-jian-input").val(val_now);
+                }else{
+    	   				
+    	   		}
+            });
+            $(".add-jian-input").keydown(function(ev){
+           		if((ev.keyCode>=48&&ev.keyCode<=57)||(ev.keyCode>=33&&ev.keyCode<=40||ev.keyCode===12||ev.keyCode===8)){
+           			
+           		}else{
+           			console.log(ev)
+           			return false;
+           		}
+            });
+            $(".p6-submit").click(function(){
+           		if(Number($(".add-jian-input").val().trim())<0||$(".add-jian-input").val().trim()>Number($(".p6-kucun span").text().trim())){
+           			alert("商品数量输入与库存数量不符!请重新输入！");
+           			$(".add-jian-input").val("0");
+           			return false;
+           		}//ing
+           		if(Number($(".add-jian-input").val().trim())===0){
+           			alert("请选择购买数量再下单！");
+           			return false;
+          		 }
+
+           	    var shoppingcart = $.cookie("shoppingcart");
+           	    var cookieSet = "";
+           	    if(shoppingcart!=="undefined"&&shoppingcart!==""&&shoppingcart!==undefined){
+               		var list = shoppingcart.split(",");
+               		var flag = false;
+               		for(var i = 0 ; i < list.length ; i ++){
+               			if(list[i].trim().split("$")[1]===commodityID){
+               				list[i] = wxID +"$"+commodityID + "$" +$(".add-jian-input").val().trim();
+               				flag = true;
+               				break;
+               			}else{
+               				flag = false;
+               			}
+               		}
+               		if(flag===false){
+               			list.push(wxID +"$"+commodityID +"$"+ $(".add-jian-input").val().trim());
+               		}
+               		cookieSet = list.join(",");
+               	}else{
+               		cookieSet = wxID +"$"+ commodityID + "$" + $(".add-jian-input").val().trim() ;
+               	}
+           		$.cookie('shoppingcart',cookieSet, { expires: 7 }); 
+                alert("已经成功添加到购物车！");
+       			window.location.href="typeClassification.html";
+            });
+            function getNowFormatDate(){
+    		    var CurrentDate = "";
+    		    var date = new Date();
+    			CurrentDate+= date.getUTCFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+    		    return CurrentDate;
+    		}
+         	function goodsDetilInit(){
+         		$(".bottom-round").children().remove();
+                var html ='';
+                for(var i=0;i<$(".item").length;i++){
+                    html +='<div class="goods-bottom-round '+i+'"><div class="goods-bottom-round_2"></div></div>';
+                }
+                $(".bottom-round").append(html);
+                var imgListLength =$(".item").length,
+
+         			imgIndex_ = 0,
+         			// imgObj_ = $(".goodsDetil-img-list").children(),
+         			roundIndex = $(".bottom-round").children(),
+         			isAnimate =false;
+    			$($(roundIndex[0]).children()[0]).css({'opacity':'0'});
+
+                $(".goodsDetil-left-img").on('click',function(ev){
+                    $("#myCarousel").carousel('next');
+                    imgRight();
+                });
+                $(".goodsDetil-right-img").on('click',function(ev){
+                    $("#myCarousel").carousel('prev');
+                    imgLeft();
+                });
+                function imgRight(){
+         			var preIndex =imgIndex_ - 1;
+         				if(preIndex<0){
+         					preIndex =imgListLength -1;
+         				}
+
+         				changeRound(preIndex);
+         			// imgLeftRight(preIndex,{'left':'-100%','display':''},{'left':'100%','display':'none'},'img-right-out');
+
+         		}
+         		function imgLeft(){
+         			var nextIndex =imgIndex_ + 1;
+         			if(nextIndex>=imgListLength){
+         				nextIndex =0;
+         			}
+    					changeRound(nextIndex);
+         			// imgLeftRight(nextIndex,{'left':'100%','display':''},{'left':'-100%','display':'none'},'img-left-out');
+         		}
+
+         		function changeRound(index1){
+                    console.log(index1);
+         			$(".goods-bottom-round_2").css({'opacity':'1'});
+         			$($(roundIndex[index1]).children()[0]).css({'opacity':'0'});
+                    imgIndex_ = index1;
+         		}
+         		function imgLeftRight(index1,css1,css2,class_){
+
+         			$(imgObj_[index1]).css(css1);
+         			$(imgObj_[imgIndex_]).addClass(class_);
+         			$(imgObj_[index1]).addClass(class_);
+
+         			setTimeout(function(){
+             			$(imgObj_[imgIndex_]).css(css2);
+             			$(imgObj_[index1]).css({'left':'0%','display':'block'});
+
+             			$(imgObj_[imgIndex_]).removeClass(class_);
+    					$(imgObj_[index1]).removeClass(class_);
+             			imgIndex_ =index1;
+
+             			isAnimate =false;
+         			},500);
+         		}
+         	}
+        });
+	</script>
+</body>
+</html>

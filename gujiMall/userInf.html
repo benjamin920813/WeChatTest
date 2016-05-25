@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>我的信息</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css" >
+		body{
+			overflow-x: hidden;
+			background-color: #ebebeb;
+		}
+	</style>
+</head>
+<body>
+	<div class="useInf-content">
+		<div class="userPhoto">
+			<img src="" alt="">
+		</div>
+		<div class="userDetailInf">
+			<div class="userInf-userName userInf_">
+				<span class="table-cell uerInf-span">???</span>
+			</div>
+			<div class="userInf-userPhone userInf_">
+				<span class="table-cell uerInf-span">???????????</span>
+			</div>
+			<div class="userInf-userAddr userInf_">
+				<span class="table-cell uerInf-span">??????????</span>
+			</div>
+			<div class="userInf-userVantages">
+				<span>积分:</span>
+				<span class="table-cell" style="display: inline">???</span>
+			</div>
+		</div>
+		<img src="img/sit2.png" class="userInfEdit" alt="">
+	</div>
+	<div class="userInf-buyIn">
+		<img src="img/userInf-sell.png" class="userInf-buy-sell" alt="">
+		<span class="userInf-buy-sell-span">我买入的</span>
+		<img src="img/userInf_row.png" class="userInf-buy-row" alt="">
+	</div>
+	<div class="userInf-sellOut">
+		<img src="img/userInf-buy.png" class="userInf-buy-sell" alt="">
+		<span class="userInf-buy-sell-span">我卖出的</span>
+		<img src="img/userInf_row.png" class="userInf-buy-row" alt="">
+	</div>
+	<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+	<script src="http://dev.api.zpage.me/sdk.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/wxid.js"></script>
+	<script>
+		$(document).ready(function(){
+			var collections = shoots.collection("guji");
+			collections.findOne({"flag":"user","userWxID":wxID},function(err,data){
+
+				if(data){
+					$(".userPhoto img").attr("src",data.userFace)
+					$(".userInf-userName span").text(data.userName);
+					$(".userInf-userPhone span").text(data.userPhone);
+					$(".userInf-userAddr span").text(data.userAddress);
+					$($(".userInf-userVantages span")[1]).text(data.score||0);
+				}else{}
+			});
+			$(".userInf-buyIn").on('click',function(){
+				window.location.href ='buy.html';
+			});
+			$(".userInf-sellOut").on('click',function(){
+				window.location.href ='sell.html';
+			});
+			$(".userInfEdit").on('click',function(){
+				window.location.href ='receiptInf.html?cratOruser=userInf';
+			});
+		});
+	</script>
+</body>
+</html>
