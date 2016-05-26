@@ -1,1 +1,249 @@
-<!DOCTYPE html><html lang="en"><head>	<meta charset="utf-8">	<meta http-equiv="X-UA-Compatible" content="IE=edge">	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	<meta name="description" content="">	<meta name="author" content="">	<!--类型分类-->	<title>类型</title>	<link rel="stylesheet" type="text/css" href="css/style.css">	<style type="text/css" >		body{			overflow-x: hidden;			background-color: #ebebeb;		}	</style></head><body>	<div class="p4-menue">		<div class="p4_menue_ position-1">			<span class="table-cell">玩具</span>		</div>		<div class="p4_menue_ position-2">			<span class="table-cell">童装</span>		</div>		<div class="p4_menue_ position-3">			<span class="table-cell">座椅</span>		</div>		<div class="p4_menue_ position-4">			<span class="table-cell">书籍</span>		</div>		<div class="p4_menue_ position-5">			<span class="table-cell">哺喂</span>		</div>		<div class="p4_menue_ position-6">			<span class="table-cell">其他</span>		</div>	</div>	<div class="child-menue" style="display: none">		<div class="triangle"></div>		<div class="child-menue_">			<span class="main_class">童车</span>			<span class="main_class">玩具</span>			<span class="main_class">学步车</span>		</div>	</div>	<div class="pg-content p4-margin_">		<div class="p4-img-content">			<!--<div class="p4-img-left">				<img src="img/type.jpg" alt="">				<div class="p4-img-text">					<span class="p4-img-name">比巴布围兜</span>					<span class="p4-img-price">￥30</span>					<span class="p4-img-price_">￥60</span>				</div>			</div>			<div class="p4-img-right">				<img src="img/type.jpg" alt="">				<div class="p4-img-text">					<span class="p4-img-name">比巴布围兜</span>					<span class="p4-img-price">￥30</span>					<span class="p4-img-price_">￥60</span>				</div>			</div>-->				</div>	</div>	<div class="p4-email">		<a href="javascript:alert('邮箱：cs@grecycle.com.cn')"><img src="img/e-mail.png" class="p4_email_img" alt=""></a>	</div>	<div class="p4-tel" style="">		<a href="tel:15026808450"><img src="img/phone.png" class="p4_email_img" alt=""></a>	</div>	<div class="" style="position: fixed;left: 2%;bottom: 17%;">		<a href="shoppingCart.html"><img src="img/shoppingCart.png" class="p4_email_img" alt=""></a>	</div>	<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>	<script src="http://dev.api.zpage.me/sdk.js"></script>	<script src="js/jquery.cookie.js"></script>	<script src="js/wxid.js"></script>	<script>	    $(document).ready(function(){	    	var collections = shoots.collection("guji");	    	var search_str = {	    		mainClass : "",	    		childClass :""	    	}	    	try{	    		collections.find({"flag" : "sellInfo","isSelling":true },{},{"lastModify":-1},function(err,data){	    			if(data.length!==0){	    				var html = "";	    				for(var i = 0 ; i < data.length ; i ++){	    					var left_right = "left";	    					if(i%2===0){	    						left_right = "left";	    					}else{	    						left_right = "right";	    					}	    					html += '<div id="'+data[i].commodityID+'" class="p4-img-'+left_right+' goods">'								 +		'<img src="'+data[i].commodityCoverImg+'" alt="">'								 +		'<div class="p4-img-text">'								 +			'<span class="p4-img-name">'+data[i].commodityName+'</span>'								 +			'<span class="p4-img-price">￥'+data[i].sellingPrice+'</span>'								 +			'<span class="p4-img-price_">￥'+data[i].primeCost+'</span>'								 +		'</div>'								 +	'</div>' ; 	    				}	    				$(".p4-img-content").html(html);	    				freshClick();	    			}else{}	    		});	    	}catch(e){}	    		    		    		    	typeChange();	    	function freshClick(){	    		$(".goods").click(function(){	    			window.location.href = "goodsDetails.html?commodityID="+$(this).attr("id");	    		});	    	}	    	function fresh_searchBtn(){	    		$(".child_class a").unbind("click").click(function(){	    			search_str.childClass = $(this).text().trim();	    			doSearch();	    			$(".child-menue").hide();	    			$(".p4_menue_").removeClass("p4_menue_click");	    		});	    	}	    	function doSearch(){	    		var search = search_str.mainClass + "_" + search_str.childClass;	    		collections.find({"flag" : "sellInfo","commodityGenre":search,"isSelling":true },function(err,data){	    			if(data.length!==0){	    				var html = "";	    				for(var i = 0 ; i < data.length ; i ++){	    					var left_right = "left";	    					if(i%2===0){	    						left_right = "left";	    					}else{	    						left_right = "right";	    					}	    					html += '<div id="'+data[i].commodityID+'" class="p4-img-'+left_right+' goods">'								 +		'<img src="'+data[i].commodityCoverImg+'" alt="">'								 +		'<div class="p4-img-text">'								 +			'<span class="p4-img-name">'+data[i].commodityName+'</span>'								 +			'<span class="p4-img-price">￥'+data[i].sellingPrice+'</span>'								 +			'<span class="p4-img-price_">￥'+data[i].primeCost+'</span>'								 +		'</div>'								 +	'</div>' ; 	    				}	    				$(".p4-img-content").html(html);	    				freshClick();	    			}else{	    				$(".p4-img-content").html("");	    			}	    		});	    	}	    	function typeChange(){	    		var menue_data_ =[["玩具","童车","学步车"],["贴身衣物","童装","童鞋","童包"],["推车","安全座椅","腰凳","餐椅"],["1-2岁","3-4岁","5-6岁","育儿"],["储奶袋","辅食机","奶瓶","餐具","紫外线消毒柜"]];	    		$(".p4_menue_").on('click',function(){		    		if($(this).hasClass('p4_menue_click')){		    			$(this).removeClass('p4_menue_click');		    			$(".child-menue").hide();		    		}else{			    		$(".p4_menue_").removeClass('p4_menue_click');			    		$(this).addClass('p4_menue_click');			    		$(".child-menue").hide();			    					    		if($(this).hasClass('position-1')){			    					    				var data1 ={'left':'0%','right':''},			    				data2 ={'left':'0%','right':''},			    				data3 =menue_data_[0];		    				changeMenue(data1,data2,data3);			    		}else if($(this).hasClass('position-2')){			    					    				var data1 ={'left':'0%','right':''},			    				data2 ={'left':'20%','right':''},			    				data3 =menue_data_[1];		    				changeMenue(data1,data2,data3);			    		}else if($(this).hasClass('position-3')){			    					    				var data1 ={'left':'0%','right':''},			    				data2 ={'left':'40%','right':''},			    				data3 =menue_data_[2];		    				changeMenue(data1,data2,data3);			    		}else if($(this).hasClass('position-4')){			    					    				var data1 ={'left':'0%','right':''},			    				data2 ={'left':'60%','right':''},			    				data3 =menue_data_[3];		    				changeMenue(data1,data2,data3);			    		}else if($(this).hasClass('position-5')){			    			var data1 ={'right':'0%','left':''},			    				data2 ={'right':'0%','left':''},			    				data3 =menue_data_[4];		    				changeMenue(data1,data2,data3);			    		}else{			    		}		    		}		    		search_str.mainClass = $(this).children("span").text().trim();		    		fresh_searchBtn();	    		});				$(".pg-content").on('click',function(){					$(".p4_menue_").removeClass('p4_menue_click');		    		$(".child-menue").hide();				});				function changeMenue(data1,data2,data3){					$(".triangle").css(data1);			    	$(".child-menue").css(data2);		    		$(".child-menue").show();		    		$(".child-menue_").children().remove();		    		for(var i=0;i<data3.length;i++){		    			var html ='';		    			html +='<span class="child_class"><a>'+data3[i]+'</a></span>';		    			$(".child-menue_").append(html);		    		}				}	    	}	    });	</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!--类型分类-->
+	<title>类型</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css" >
+		body{
+			overflow-x: hidden;
+			background-color: #ebebeb;
+		}
+	</style>
+</head>
+<body>
+	<div class="p4-menue">
+		<div class="p4_menue_ position-1">
+			<span class="table-cell">玩具</span>
+		</div>
+		<div class="p4_menue_ position-2">
+			<span class="table-cell">童装</span>
+		</div>
+		<div class="p4_menue_ position-3">
+			<span class="table-cell">座椅</span>
+		</div>
+		<div class="p4_menue_ position-4">
+			<span class="table-cell">书籍</span>
+		</div>
+		<div class="p4_menue_ position-5">
+			<span class="table-cell">哺喂</span>
+		</div>
+		<div id="other" class="p4_menue_ position-6">
+			<span class="table-cell">其他</span>
+		</div>
+	</div>
+	<div class="child-menue" style="display: none">
+		<div class="triangle"></div>
+		<div class="child-menue_">
+			<span class="main_class">童车</span>
+			<span class="main_class">玩具</span>
+			<span class="main_class">学步车</span>
+		</div>
+	</div>
+	<div class="pg-content p4-margin_">
+		<div class="p4-img-content">
+			<!--<div class="p4-img-left">
+				<img src="img/type.jpg" alt="">
+				<div class="p4-img-text">
+					<span class="p4-img-name">比巴布围兜</span>
+					<span class="p4-img-price">￥30</span>
+					<span class="p4-img-price_">￥60</span>
+				</div>
+			</div>
+			<div class="p4-img-right">
+				<img src="img/type.jpg" alt="">
+				<div class="p4-img-text">
+					<span class="p4-img-name">比巴布围兜</span>
+					<span class="p4-img-price">￥30</span>
+					<span class="p4-img-price_">￥60</span>
+				</div>
+			</div>-->
+		
+		</div>
+	</div>
+	<div class="p4-email">
+		<a href="javascript:alert('邮箱：cs@grecycle.com.cn')"><img src="img/e-mail.png" class="p4_email_img" alt=""></a>
+	</div>
+	<div class="p4-tel" style="">
+		<a href="tel:15026808450"><img src="img/phone.png" class="p4_email_img" alt=""></a>
+	</div>
+	<div class="" style="position: fixed;left: 2%;bottom: 17%;">
+		<a href="shoppingCart.html"><img src="img/shoppingCart.png" class="p4_email_img" alt=""></a>
+	</div>
+
+
+	<script src="http://s3.zpage.me/cdn/jquery-2.1.1.js"></script>
+	<script src="http://dev.api.zpage.me/sdk.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script src="js/wxid.js"></script>
+	<script>
+	    $(document).ready(function(){
+	    	var collections = shoots.collection("guji");
+	    	var search_str = {
+	    		mainClass : "",
+	    		childClass :""
+	    	}
+	    	try{
+	    		collections.find({"flag" : "sellInfo","isSelling":true },{},{"lastModify":-1},function(err,data){
+	    			if(data.length!==0){
+	    				var html = "";
+	    				for(var i = 0 ; i < data.length ; i ++){
+	    					var left_right = "left";
+	    					if(i%2===0){
+	    						left_right = "left";
+	    					}else{
+	    						left_right = "right";
+	    					}
+	    					html += '<div id="'+data[i].commodityID+'" class="p4-img-'+left_right+' goods">'
+								 +		'<img src="'+data[i].commodityCoverImg+'" alt="">'
+								 +		'<div class="p4-img-text">'
+								 +			'<span class="p4-img-name">'+data[i].commodityName+'</span>'
+								 +			'<span class="p4-img-price">￥'+data[i].sellingPrice+'</span>'
+								 +			'<span class="p4-img-price_">￥'+data[i].primeCost+'</span>'
+								 +		'</div>'
+								 +	'</div>' ; 
+	    				}
+	    				$(".p4-img-content").html(html);
+	    				freshClick();
+	    			}else{}
+	    		});
+	    	}catch(e){}
+	    	
+	    	
+	    	
+	    	typeChange();
+	    	function freshClick(){
+	    		$(".goods").click(function(){
+	    			window.location.href = "goodsDetails.html?commodityID="+$(this).attr("id");
+	    		});
+	    	}
+	    	function fresh_searchBtn(){
+	    		$(".child_class a").unbind("click").click(function(){
+	    			search_str.childClass = $(this).text().trim();
+	    			doSearch();
+	    			$(".child-menue").hide();
+	    			$(".p4_menue_").removeClass("p4_menue_click");
+	    		});
+	    	}
+	    	function doSearch(sty){
+				if(sty){
+					var search = "其他_其他";
+				}else{
+					var search = search_str.mainClass + "_" + search_str.childClass;
+				}
+	    		collections.find({"flag" : "sellInfo","commodityGenre":search,"isSelling":true },function(err,data){
+	    			if(data.length!==0){
+	    				var html = "";
+	    				for(var i = 0 ; i < data.length ; i ++){
+	    					var left_right = "left";
+	    					if(i%2===0){
+	    						left_right = "left";
+	    					}else{
+	    						left_right = "right";
+	    					}
+	    					html += '<div id="'+data[i].commodityID+'" class="p4-img-'+left_right+' goods">'
+								 +		'<img src="'+data[i].commodityCoverImg+'" alt="">'
+								 +		'<div class="p4-img-text">'
+								 +			'<span class="p4-img-name">'+data[i].commodityName+'</span>'
+								 +			'<span class="p4-img-price">￥'+data[i].sellingPrice+'</span>'
+								 +			'<span class="p4-img-price_">￥'+data[i].primeCost+'</span>'
+								 +		'</div>'
+								 +	'</div>' ; 
+	    				}
+	    				$(".p4-img-content").html(html);
+	    				freshClick();
+	    			}else{
+	    				$(".p4-img-content").html("");
+	    			}
+	    		});
+	    	}
+	    	function typeChange(){
+	    		var menue_data_ =[["玩具","童车","学步车"],["贴身衣物","童装","童鞋","童包"],["推车","安全座椅","腰凳","餐椅"],["1-2岁","3-4岁","5-6岁","育儿"],["储奶袋","辅食机","奶瓶","餐具","紫外线消毒柜"]];
+
+	    		$(".p4_menue_").on('click',function(){
+		    		if($(this).hasClass('p4_menue_click')){
+		    			$(this).removeClass('p4_menue_click');
+		    			$(".child-menue").hide();
+		    		}else{
+
+			    		$(".p4_menue_").removeClass('p4_menue_click');
+			    		$(this).addClass('p4_menue_click');
+			    		$(".child-menue").hide();
+			    		
+			    		if($(this).hasClass('position-1')){
+			    			
+		    				var data1 ={'left':'0%','right':''},
+			    				data2 ={'left':'0%','right':''},
+			    				data3 =menue_data_[0];
+
+		    				changeMenue(data1,data2,data3);
+
+			    		}else if($(this).hasClass('position-2')){
+
+			    			
+		    				var data1 ={'left':'0%','right':''},
+			    				data2 ={'left':'17%','right':''},
+			    				data3 =menue_data_[1];
+
+		    				changeMenue(data1,data2,data3);
+			    		}else if($(this).hasClass('position-3')){
+
+			    			
+		    				var data1 ={'left':'0%','right':''},
+			    				data2 ={'left':'33%','right':''},
+			    				data3 =menue_data_[2];
+
+		    				changeMenue(data1,data2,data3);
+			    		}else if($(this).hasClass('position-4')){
+			    			
+		    				var data1 ={'left':'0%','right':''},
+			    				data2 ={'left':'50%','right':''},
+			    				data3 =menue_data_[3];
+
+		    				changeMenue(data1,data2,data3);
+
+			    		}else if($(this).hasClass('position-5')){
+			    			var data1 ={'right':'32%','margin-right':''},
+			    				data2 ={'right':'8%','left':''},
+			    				data3 =menue_data_[4];
+
+		    				changeMenue(data1,data2,data3);
+			    		}else{
+
+			    		}
+		    		}
+		    		search_str.mainClass = $(this).children("span").text().trim();
+		    		fresh_searchBtn();
+	    		});
+
+				$(".pg-content").on('click',function(){
+					$(".p4_menue_").removeClass('p4_menue_click');
+		    		$(".child-menue").hide();
+				});
+				function changeMenue(data1,data2,data3){
+					$(".triangle").css(data1);
+			    	$(".child-menue").css(data2);
+		    		$(".child-menue").show();
+
+		    		$(".child-menue_").children().remove();
+
+		    		for(var i=0;i<data3.length;i++){
+		    			var html ='';
+		    			html +='<span class="child_class"><a>'+data3[i]+'</a></span>';
+		    			$(".child-menue_").append(html);
+		    		}
+				}
+	    	}
+			$("#other").click(function(){
+				doSearch("other");
+			});
+	    });
+
+	</script>
+</body>
+</html>

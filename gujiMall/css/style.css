@@ -334,7 +334,7 @@ body,html{
 	font-family: Arial, 'Hiragino Sans GB', md-hsgb, 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
     font-size: 1em;
 	font-weight: 500; 
-	width: 20%;
+	width: 16.66666%;
 	height: 100%;
 }
 .p4_menue_click{
@@ -390,25 +390,25 @@ body,html{
 }
 .position-3{
 	position: absolute;
-	left: 33.3333%;
+	left: 33.33333%;
 	display: table;
 	text-align: center;
 }
 .position-4{
 	position: absolute;
-	left: 49.999%;
+	left: 49.99999%;
 	display: table;
 	text-align: center;
 }
 .position-5{
 	position: absolute;
-	left: 66.666%;
+	left: 66.66666%;
 	display: table;
 	text-align: center;
 }
 .position-6{
 	position: absolute;
-	left: 83.33333%;
+	left: 83.333333%;
 	display: table;
 	text-align: center;
 }
