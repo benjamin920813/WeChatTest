@@ -384,25 +384,31 @@ body,html{
 }
 .position-2{
 	position: absolute;
-	left: 20%;
+	left: 16.66666%;
 	display: table;
 	text-align: center;
 }
 .position-3{
 	position: absolute;
-	left: 40%;
+	left: 33.3333%;
 	display: table;
 	text-align: center;
 }
 .position-4{
 	position: absolute;
-	left: 60%;
+	left: 49.999%;
 	display: table;
 	text-align: center;
 }
 .position-5{
 	position: absolute;
-	left: 80%;
+	left: 66.666%;
+	display: table;
+	text-align: center;
+}
+.position-6{
+	position: absolute;
+	left: 83.33333%;
 	display: table;
 	text-align: center;
 }
