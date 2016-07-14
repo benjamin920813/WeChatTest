@@ -342,7 +342,7 @@ body,html{
     font-size: 1.3em;
 }
 .child-menue{
-    position: absolute;
+    position: fixed;
     margin-top: 65px;
     /*width: 20%;*/
     margin-right: 10px;
