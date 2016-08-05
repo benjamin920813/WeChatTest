@@ -163,7 +163,7 @@
 	    		});
 	    	}
 	    	function typeChange(){
-	    		var menue_data_ =[["玩具","童车","学步车"],["贴身衣物","童装","童鞋","童包"],["推车","安全座椅","腰凳","餐椅"],["1-2岁","3-4岁","5-6岁","育儿"],["储奶袋","辅食机","奶瓶","餐具","紫外线消毒柜"]];
+	    		var menue_data_ =[["玩具","童车","学步车"],["贴身衣物","童装","童鞋","童包"],["推车","安全座椅","腰凳","餐椅"],["1-2岁","3-4岁","5-6岁","育儿"],["储奶袋","辅食机","奶瓶","餐具","消毒器具"]];
 
 	    		$(".p4_menue_").on('click',function(){
 		    		if($(this).hasClass('p4_menue_click')){
@@ -208,7 +208,7 @@
 		    				changeMenue(data1,data2,data3);
 
 			    		}else if($(this).hasClass('position-5')){
-			    			var data1 ={'right':'32%','margin-right':''},
+			    			var data1 ={'right':'32%','left':''},
 			    				data2 ={'right':'8%','left':''},
 			    				data3 =menue_data_[4];
 
