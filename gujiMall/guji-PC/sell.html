@@ -2,8 +2,6 @@
 <html lang="en-us">
 	<head>
 		<meta charset="utf-8">
-		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
 		<title>商品详情</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
@@ -884,6 +882,7 @@
 		
 		<script src="http://dev.api.zpage.me/sdk.js"></script>
 		<script src="../js/public.js"></script>
+		<script src="../js/gulipop.js"></script>
 
 
 		<script type="text/javascript">
@@ -947,10 +946,13 @@ var date_;
 								}
 							});
 						}else if(tdType =='deleBt'){
-							collection_.remove({"commodityID":commodId});
-							$($(this).parent()[0]).remove();
-							alert("删除成功");
-							window.location.reload();
+							guli_confirm("消息提示","是否确定删除？",function(){
+								collection_.remove({"commodityID":commodId});
+								$($(this).parent()[0]).remove();
+								guli_alert("消息提示","已成功删除！",function(){
+									window.location.reload();
+								});
+							});
 						}else if(tdType =='groundingBt'){
 							collection_.find({"commodityID":commodId,"isSelling":true},function(err,data){
 								if(data.length !=0){

@@ -59,6 +59,7 @@ var guli_confirm = function(title,msg,func,funcs){//标题，提示信息，点�
 		$('#'+id+'_sure').click(function(){
 			func();
 			$('#'+id).modal('hide');
+			$(".modal-backdrop").hide();
 			$('#'+id).remove();
 			$('body').removeClass("modal-open");
 		});
@@ -69,6 +70,7 @@ var guli_confirm = function(title,msg,func,funcs){//标题，提示信息，点�
 					funcs();
 				}
 				$('#'+id).modal('hide');
+				$(".modal-backdrop").hide();
 				$('#'+id).remove();
 				$('body').removeClass("modal-open");
 			});
@@ -83,6 +85,7 @@ var guli_confirm = function(title,msg,func,funcs){//标题，提示信息，点�
 		// 绑定确定按钮事件
 		$('#'+id+'_sure','#'+id+'_cancel').click(function(){
 			$('#'+id).modal('hide');
+			$(".modal-backdrop").hide();
 			$('#'+id).remove();
 			$('body').removeClass("modal-open");
 		});
@@ -101,6 +104,7 @@ var guli_alert = function(title,msg,func){
 		$('#'+id+'_sure').click(function(){
 			func();
 			$('#'+id).modal('hide');
+			$(".modal-backdrop").hide();
 			$('#'+id).remove();
 			$('body').removeClass("modal-open");
 		});
@@ -114,6 +118,7 @@ var guli_alert = function(title,msg,func){
 		// 绑定确定按钮事件
 		$('#'+id+'_sure').click(function(){
 			$('#'+id).modal('hide');
+			$(".modal-backdrop").hide();
 			$('#'+id).remove();
 			$('body').removeClass("modal-open");
 		});
