@@ -1181,6 +1181,7 @@ body,html{
     font-weight: 300;
     color: #a9a9a9;
     line-height: 21px;
+	z-index: 999999;
 }
 .sell-tipes p{
 	margin: 0;
