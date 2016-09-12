@@ -988,9 +988,13 @@ var date_;
 					console.log($("#newCommodityTb").children()[0].id);
 				});
 				$(".cancleBT").on('click',function(){
-					collection_.remove({"flag":"reservationInf_","reservationTime":reservationTime_});
-					collection_.remove({"flag":"sellInfo","reservationTime":reservationTime_});
-					window.location.href ='index2.html';
+					guli_confirm("消息提示","是否取消登记",function(){
+						collection_.remove({"flag":"reservationInf_","reservationTime":reservationTime_});
+						collection_.remove({"flag":"sellInfo","reservationTime":reservationTime_});
+						guli_alert("消息提示","取消登记成功！",function(){
+							window.location.href ='index2.html';
+						});
+					});
 				});
 				
 				$("#select-1").on('change',function(){
