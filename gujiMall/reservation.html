@@ -65,7 +65,7 @@
 	<script src="http://dev.api.zpage.me/sdk.js"></script>
 	<script src="js/public.js"></script>
 	<script src="js/jquery.cookie.js"></script>
-	<script src="js/wxid.js"></script>
+	<script src="js/wxid.js"></script>	<script src="js/gulipop.js"></script>
 	<script>
 	var date_;
 		$(document).ready(function(){
@@ -93,9 +93,8 @@
 			initUserInf();
 			
 			
-			$(".reservation_bt").on('click',function(){
-				radioChose();
-
+			$(".reservation_bt").on('click',function(){                var uName = $(".reservation-name").val();				var uAddr = $(".reservation-address").val();				var uPhon = $(".reservation-phone").val();				var gDisc = $(".reservation-disc").val();				var remark = $(".reservation-remark").val();				if (!uName){				    guliwxalert("sure","消息提醒","请输入姓名","","");					return false;				}				if (!uPhon){				     guliwxalert("sure","消息提醒","请输入手机号码","","");					 return false;				}				if (!uAddr){				     guliwxalert("sure","消息提醒","请输入详细地址","","");					 return false;				}				if (!gDisc){				     guliwxalert("sure","消息提醒","请输入货品描述","","");					 return false;				}				if (!remark){				     guliwxalert("sure","消息提醒","请输入备注","","");					 return false;				}
+				radioChose();
 				var userInfo = {
 					userWxID : wxID,
 					flag:'user',
