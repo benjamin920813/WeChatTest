@@ -473,11 +473,13 @@ body,html{
     position: fixed;
     left: 2%;
     bottom: 3%;
+	z-index: 999999;
 }
 .p4-tel{
     position: fixed;
     left: 2%;
     bottom: 10%;
+	z-index: 999999;
 }
 .p4_email_img{
 	width: 30px;
@@ -1181,7 +1183,8 @@ body,html{
     font-weight: 300;
     color: #a9a9a9;
     line-height: 21px;
-	z-index: 999999;
+	z-index: 2;
+	background-color: #fff;
 }
 .sell-tipes p{
 	margin: 0;
