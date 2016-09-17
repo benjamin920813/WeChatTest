@@ -1178,6 +1178,7 @@ body,html{
 	position: fixed;
     bottom: 0;
     margin: 20px;
+	padding: 10px 20px;
     font-family: Arial, 'Hiragino Sans GB', md-hsgb, 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
     font-size: 13px;
     font-weight: 300;
